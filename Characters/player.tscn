@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c11fe2qp480fr"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_foq6m"]
+[ext_resource type="Texture2D" uid="uid://dffij6olj656p" path="res://Assets/Textures/icon.svg" id="2_v5242"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_esvo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v5242")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v5242")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_oollm"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8qfr"]
+_data = {
+"idle": SubResource("Animation_oollm")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kyh5f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8jjn"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_foq6m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_esvo0")
+animation = &"idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f8qfr")
+}
+tree_root = SubResource("AnimationNodeStateMachine_kyh5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_i8jjn")

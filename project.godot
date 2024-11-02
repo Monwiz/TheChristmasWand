@@ -11,10 +11,35 @@ config_version=5
 [application]
 
 config/name="Game Off 2024"
+run/main_scene="res://Scenes/home.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Resources/Assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "gray",
+"res://Assets/Music/": "purple",
+"res://Assets/Sounds/": "purple",
+"res://Assets/Textures/": "orange",
+"res://Characters/": "red",
+"res://Objects/": "red",
+"res://Resources/": "orange",
+"res://Resources/Assets/": "teal",
+"res://Resources/Music/": "pink",
+"res://Resources/Sounds/": "pink",
+"res://Scenes/": "blue",
+"res://Scripts/": "purple",
+"res://Ui/": "green"
+}
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
