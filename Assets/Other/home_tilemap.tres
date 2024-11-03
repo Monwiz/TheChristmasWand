@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dsvqbjkj46vr7"]
+
+[ext_resource type="Texture2D" uid="uid://c4l31xrcqb8ce" path="res://Assets/Textures/Map/home.png" id="1_yl1cs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_15igj"]
+texture = ExtResource("1_yl1cs")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+3:2/0 = 0
+5:2/0 = 0
+5:1/0 = 0
+5:0/0 = 0
+4:0/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+7:4/0 = 0
+6:4/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_15igj")
