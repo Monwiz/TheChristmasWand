@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bjywvic8b2cu4"]
+[gd_scene load_steps=27 format=4 uid="uid://bjywvic8b2cu4"]
 
 [ext_resource type="Texture2D" uid="uid://c4l31xrcqb8ce" path="res://Assets/Textures/Map/home.png" id="1_gpnea"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/home_tilemap.tres" id="1_imncd"]
@@ -70,6 +70,13 @@ region = Rect2(96, 0, 32, 48)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_302u3"]
 radius = 15.5
 height = 41.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bghoy"]
+atlas = ExtResource("1_gpnea")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fkv3"]
+size = Vector2(31.75, 11.75)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tt284"]
 closed = false
@@ -277,6 +284,18 @@ texture = SubResource("AtlasTexture_q5scu")
 position = Vector2(-0.25, 0.75)
 shape = SubResource("CapsuleShape2D_302u3")
 
+[node name="XmasWand" type="Area2D" parent="Layers/Objects/Table"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/Table/XmasWand"]
+texture = SubResource("AtlasTexture_bghoy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Table/XmasWand"]
+position = Vector2(-0.375, 2.125)
+shape = SubResource("RectangleShape2D_1fkv3")
+debug_color = Color(1, 1, 0, 0.419608)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(168, 82)
 
@@ -300,6 +319,7 @@ scene_path = "res://Scenes/yard.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 shape = SubResource("RectangleShape2D_xsw0a")
+debug_color = Color(0, 0.054902, 1, 0.419608)
 
 [node name="Fading" type="AnimationPlayer" parent="."]
 libraries = {

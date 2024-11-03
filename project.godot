@@ -38,6 +38,11 @@ folder_colors={
 "res://Ui/": "green"
 }
 
+[layer_names]
+
+2d_physics/layer_1="Obstacles"
+2d_physics/layer_2="Interactive"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
