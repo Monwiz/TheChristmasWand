@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdn8tet00w2je"]
+
+[ext_resource type="Script" path="res://Scripts/npc.gd" id="1_khoh8"]
+[ext_resource type="Texture2D" uid="uid://dffij6olj656p" path="res://Assets/Textures/icon.svg" id="2_hgs4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rjqt"]
+size = Vector2(16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72ywd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgs4n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgs4n")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="Npc" type="Area2D"]
+position = Vector2(97.75, 57.75)
+script = ExtResource("1_khoh8")
+dialogue_line = ["Hello, This is an example of a dialogue.", "Bye."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_5rjqt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_72ywd")
+animation = &"walking"
+
+[connection signal="body_entered" from="." to="." method="fetch_dialogue"]

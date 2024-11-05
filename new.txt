@@ -1,0 +1,5 @@
+Added:
+	Npc
+	Dialogues
+	Dialogue System
+	How to use the dialogue system in the dialogue script
