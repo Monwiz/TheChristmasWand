@@ -85,7 +85,7 @@ func start_fight(fight: Fight) -> void:
 	set_physics_process(true)
 	decide()
 
-func end_fight():
+func end_fight(state: int):
 	set_physics_process(false)
 	for allie in allies:
 		allie.process_mode = Node.PROCESS_MODE_INHERIT
@@ -104,6 +104,7 @@ func end_fight():
 	$Music.stop() #Slowly stop the music
 	#animation
 	#Slowly return the global music
+	finished.emit(state)
 
 func _physics_process(delta: float) -> void:
 	if goals:
@@ -149,6 +150,7 @@ func _physics_process(delta: float) -> void:
 			allie.process_mode = Node.PROCESS_MODE_INHERIT
 	is_ignoring_input = false
 	if allies.all(func(allie): return allie.get_hp() <= 0):
+		await signal_dialogue_or_animation
 		death()
 	
 func next_character() -> void:
@@ -489,6 +491,8 @@ func preparing_next_turns():
 
 func death():
 	lose.emit()
+	if dialogue_before_death:
+		dialogue_box.set_dialogue(dialogue_before_death)
 	queue_free()
 
 func select_goal(entities: Array[CharacterBody2D]):
@@ -539,16 +543,21 @@ func _on_defense_pressed() -> void:
 
 
 func _on_talk_pressed() -> void:
-	toggle_buttons(false)
-	dialogue_box.set_dialogue(talking_dialogue)
-	
+	if talking_dialogue:
+		toggle_buttons(false)
+		dialogue_box.set_dialogue(talking_dialogue)
+	else:
+		var dialogue = Dialogue.new()
+		dialogue.dialogue_line = [["[Battle]","You don't have anything to talk about."]]
+		dialogue_box.set_dialogue(dialogue)
+		
 	await dialogue_box.finished
 	action_selected.emit()
 
 func _on_leave_pressed() -> void:
 	toggle_buttons(false)
 	if can_leave:
-		if randf_range(0, 1) > leaving_chances:
+		if randf_range(0, 1) <= leaving_chances:
 			#animation
 			var dialogue = Dialogue.new()
 			var last_allie = allies.pop_back().name
@@ -557,16 +566,22 @@ func _on_leave_pressed() -> void:
 				allies_line = last_allie
 			else:
 				allies_line = ", ".join(allies) + " and " + last_allie
-			dialogue.dialogue_line = [["[Battle]", allies_line+" escaped"]]
+			dialogue.dialogue_line = [["[Battle]", allies_line+" escaped."]]
 			await dialogue_box.finished
 			
-			end_fight()
+			end_fight(2)
 			return
-			
-	dialogue_box.set_dialogue(failed_leaving_dialogue)
-	set_physics_process(false)
+	
+	if failed_leaving_dialogue:
+		dialogue_box.set_dialogue(failed_leaving_dialogue)
+	else:
+		var dialogue = Dialogue.new()
+		if can_leave:
+			dialogue.dialogue_line = [["[Battle]","You failed to escape."]]
+		else:
+			dialogue.dialogue_line = [["[Battle]","You can't escape."]]
+		dialogue_box.set_dialogue(dialogue)
 	await dialogue_box.finished
-	set_physics_process(true)
 	
 	if can_leave: #Skip the turn
 		is_fighting = true

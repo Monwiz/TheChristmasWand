@@ -1,8 +1,12 @@
-[gd_resource type="Resource" script_class="Fight" load_steps=8 format=3 uid="uid://cii3nfah7xox6"]
+[gd_resource type="Resource" script_class="Fight" load_steps=9 format=3 uid="uid://cii3nfah7xox6"]
 
 [ext_resource type="Resource" uid="uid://bqrrp40xr4dvr" path="res://Assets/Resources/Battle Programmes/basic_attack.tres" id="1_s73k0"]
 [ext_resource type="Script" path="res://Scripts/Classes/fight.gd" id="1_tujml"]
 [ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="2_6vbb1"]
+
+[sub_resource type="Resource" id="Resource_i6ufp"]
+script = ExtResource("2_6vbb1")
+dialogue_line = [["The wizard", "Oh no, it's ba-"]]
 
 [sub_resource type="Resource" id="Resource_y5ucb"]
 script = ExtResource("2_6vbb1")
@@ -32,3 +36,4 @@ can_leave = false
 leaving_chances = 0.75
 talking_dialogue = SubResource("Resource_7m2jr")
 failed_leaving_dialogue = SubResource("Resource_y5ucb")
+dialogue_before_death = SubResource("Resource_i6ufp")
