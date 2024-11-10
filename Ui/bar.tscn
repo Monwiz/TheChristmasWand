@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct02hvakw8ghn"]
+
+[sub_resource type="Gradient" id="Gradient_lhqw8"]
+offsets = PackedFloat32Array(0.47619)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pc24r"]
+gradient = SubResource("Gradient_lhqw8")
+
+[sub_resource type="Gradient" id="Gradient_yvemm"]
+colors = PackedColorArray(0.572549, 0.572549, 0.572549, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f110f"]
+gradient = SubResource("Gradient_yvemm")
+
+[node name="Bar" type="TextureProgressBar"]
+z_index = 99
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = -10.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_pc24r")
+texture_progress = SubResource("GradientTexture1D_f110f")

@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Fight" load_steps=8 format=3 uid="uid://cii3nfah7xox6"]
+
+[ext_resource type="Resource" uid="uid://bqrrp40xr4dvr" path="res://Assets/Resources/Battle Programmes/basic_attack.tres" id="1_s73k0"]
+[ext_resource type="Script" path="res://Scripts/Classes/fight.gd" id="1_tujml"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="2_6vbb1"]
+
+[sub_resource type="Resource" id="Resource_y5ucb"]
+script = ExtResource("2_6vbb1")
+dialogue_line = [["NPC", "No, you can't just escape"]]
+
+[sub_resource type="Resource" id="Resource_u5u3b"]
+script = ExtResource("2_6vbb1")
+dialogue_line = [["The wizard", "Why do you attack me?"], ["NPC", "Have you forgot? It's a test of fighting, so we must do fighting"]]
+
+[sub_resource type="Resource" id="Resource_eyhaa"]
+script = ExtResource("2_6vbb1")
+dialogue_line = []
+
+[sub_resource type="Resource" id="Resource_7m2jr"]
+script = ExtResource("2_6vbb1")
+dialogue_line = [{
+"Ask the reason of fighting": SubResource("Resource_u5u3b"),
+"_": SubResource("Resource_eyhaa")
+}]
+
+[resource]
+script = ExtResource("1_tujml")
+allies_paths = Array[NodePath]([NodePath("Player")])
+enemies_paths = Array[NodePath]([NodePath("Player")])
+battle_program = ExtResource("1_s73k0")
+can_leave = false
+leaving_chances = 0.75
+talking_dialogue = SubResource("Resource_7m2jr")
+failed_leaving_dialogue = SubResource("Resource_y5ucb")

@@ -1,8 +1,7 @@
 extends Resource
-class_name dialogue
+class_name Dialogue
 
 @export var dialogue_line : Array = [["Name","Text"]]
-
 #How to use and make dialogues
 #To use, create a dialogue resource and fill the dialogue_line array.
 #For a single line. Use an array using the following order; ["Name","Text"]

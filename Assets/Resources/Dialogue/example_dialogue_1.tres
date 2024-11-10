@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=3 format=3 uid="uid://dgg0wxio20s41"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="1_fg7el"]
+[ext_resource type="Resource" uid="uid://cii3nfah7xox6" path="res://Assets/Resources/Fights/player.tres" id="1_smb3b"]
+
+[resource]
+script = ExtResource("1_fg7el")
+dialogue_line = [["Npc", "Bye."], ExtResource("1_smb3b")]

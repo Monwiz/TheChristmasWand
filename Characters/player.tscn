@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c11fe2qp480fr"]
+[gd_scene load_steps=9 format=3 uid="uid://c11fe2qp480fr"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_foq6m"]
 [ext_resource type="Texture2D" uid="uid://dffij6olj656p" path="res://Assets/Textures/icon.svg" id="2_v5242"]
+[ext_resource type="PackedScene" uid="uid://ct02hvakw8ghn" path="res://Ui/bar.tscn" id="3_l407u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_esvo0"]
 animations = [{
@@ -38,7 +39,7 @@ size = Vector2(16, 8)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_foq6m")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 light_mask = 0
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_esvo0")
@@ -53,3 +54,13 @@ tree_root = SubResource("AnimationNodeStateMachine_kyh5f")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_i8jjn")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_l407u")]
+visible = false
+offset_top = -13.0
+offset_bottom = -12.0
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="MagicBar" parent="." instance=ExtResource("3_l407u")]
+visible = false
+tint_progress = Color(0, 1, 1, 1)

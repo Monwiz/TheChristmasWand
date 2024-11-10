@@ -3,3 +3,11 @@ Added:
 	Dialogues
 	Dialogue System
 	How to use the dialogue system in the dialogue script
+
+- 2024.11.10
+	Battle System
+	Inventory and Item System
+	Battle Spell System
+	Selection of Nodes/Resources using dialogue with choices
+	Calling an action using dialogue
+	Global stats for allies

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b2vhi0n7mal1f"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/BattleSpells/kaboom.gd" id="1_571qc"]
+
+[resource]
+script = ExtResource("1_571qc")
+name = "Kaboom"
+description = ""

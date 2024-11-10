@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdn8tet00w2je"]
 
-[ext_resource type="Script" path="res://Scripts/npc.gd" id="1_khoh8"]
+[ext_resource type="Script" path="res://Scripts/Classes/npc.gd" id="1_khoh8"]
 [ext_resource type="Texture2D" uid="uid://dffij6olj656p" path="res://Assets/Textures/icon.svg" id="2_hgs4n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rjqt"]

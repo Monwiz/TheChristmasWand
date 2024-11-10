@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattleProgram" load_steps=3 format=3 uid="uid://bqrrp40xr4dvr"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/battle_programme.gd" id="1_q84qj"]
+[ext_resource type="Resource" uid="uid://dgodd0jujm13j" path="res://Assets/Resources/Dialogue/example_dialogue_2.tres" id="1_xh0of"]
+
+[resource]
+script = ExtResource("1_q84qj")
+program = {
+"1.0": [ExtResource("1_xh0of"), [["Attack"]]]
+}

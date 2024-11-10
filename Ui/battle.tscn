@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://33dlfcgvy37v"]
+
+[ext_resource type="Script" path="res://Scripts/Systems/battle.gd" id="1_syw6b"]
+
+[sub_resource type="Gradient" id="Gradient_uhneg"]
+offsets = PackedFloat32Array(0.626761, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_arwes"]
+gradient = SubResource("Gradient_uhneg")
+fill = 2
+fill_from = Vector2(0.495146, 0.480583)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_pft8t"]
+offsets = PackedFloat32Array(0.626761, 1)
+colors = PackedColorArray(1, 1, 1, 1, 7.70092e-07, 0.746996, 0.843932, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fhdgk"]
+gradient = SubResource("Gradient_pft8t")
+fill = 2
+fill_from = Vector2(0.495146, 0.480583)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_pugux"]
+offsets = PackedFloat32Array(0.626761, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.799715, 0.30705, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_22rxi"]
+gradient = SubResource("Gradient_pugux")
+fill = 2
+fill_from = Vector2(0.495146, 0.480583)
+fill_to = Vector2(0, 0)
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_syw6b")
+
+[node name="Attack" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 538.0
+offset_right = 202.0
+offset_bottom = 666.0
+focus_mode = 0
+mouse_filter = 2
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_arwes")
+texture_hover = SubResource("GradientTexture2D_fhdgk")
+texture_focused = SubResource("GradientTexture2D_22rxi")
+stretch_mode = 0
+
+[node name="Spell" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 538.0
+offset_right = 372.0
+offset_bottom = 666.0
+focus_mode = 0
+mouse_filter = 2
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_arwes")
+texture_hover = SubResource("GradientTexture2D_fhdgk")
+texture_focused = SubResource("GradientTexture2D_22rxi")
+stretch_mode = 0
+
+[node name="Items" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 538.0
+offset_right = 538.0
+offset_bottom = 666.0
+focus_mode = 0
+mouse_filter = 2
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_arwes")
+texture_hover = SubResource("GradientTexture2D_fhdgk")
+texture_focused = SubResource("GradientTexture2D_22rxi")
+stretch_mode = 0
+
+[node name="Defense" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 578.0
+offset_top = 538.0
+offset_right = 706.0
+offset_bottom = 666.0
+focus_mode = 0
+mouse_filter = 2
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_arwes")
+texture_hover = SubResource("GradientTexture2D_fhdgk")
+texture_focused = SubResource("GradientTexture2D_22rxi")
+stretch_mode = 0
+
+[node name="Talk" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 54.0
+offset_right = 1080.0
+offset_bottom = 182.0
+focus_mode = 0
+mouse_filter = 2
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_arwes")
+texture_hover = SubResource("GradientTexture2D_fhdgk")
+texture_focused = SubResource("GradientTexture2D_22rxi")
+stretch_mode = 0
+
+[node name="Leave" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1092.0
+offset_top = 52.0
+offset_right = 1220.0
+offset_bottom = 180.0
+focus_mode = 0
+mouse_filter = 2
+action_mode = 0
+texture_normal = SubResource("GradientTexture2D_arwes")
+texture_hover = SubResource("GradientTexture2D_fhdgk")
+texture_focused = SubResource("GradientTexture2D_22rxi")
+stretch_mode = 0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[connection signal="pressed" from="Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Spell" to="." method="_on_spell_pressed"]
+[connection signal="pressed" from="Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="Defense" to="." method="_on_defense_pressed"]
+[connection signal="pressed" from="Talk" to="." method="_on_talk_pressed"]
+[connection signal="pressed" from="Leave" to="." method="_on_leave_pressed"]
