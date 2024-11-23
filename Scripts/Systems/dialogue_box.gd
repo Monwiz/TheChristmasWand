@@ -62,6 +62,7 @@ func toggle_panel(toggle):
 		
 func end_dialogue():
 	toggle_panel(false)
+	$"/root/Scene/Player".skip_iteration()
 	$"/root/Scene/Player".set_physics_process(true)
 
 func branch_dialogue(_dialogue):

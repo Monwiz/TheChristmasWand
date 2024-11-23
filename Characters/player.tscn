@@ -64,3 +64,7 @@ tint_progress = Color(1, 0, 0, 1)
 [node name="MagicBar" parent="." instance=ExtResource("3_l407u")]
 visible = false
 tint_progress = Color(0, 1, 1, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+target_position = Vector2(0, 12)
