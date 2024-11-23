@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/battle_alt.ogg-dd6f5e5af53b00aee1ad079a0dabc4
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

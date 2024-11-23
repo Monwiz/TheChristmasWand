@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Fight" load_steps=9 format=3 uid="uid://cii3nfah7xox6"]
+[gd_resource type="Resource" script_class="Fight" load_steps=11 format=3 uid="uid://cii3nfah7xox6"]
 
 [ext_resource type="Resource" uid="uid://bqrrp40xr4dvr" path="res://Assets/Resources/Battle Programmes/basic_attack.tres" id="1_s73k0"]
 [ext_resource type="Script" path="res://Scripts/Classes/fight.gd" id="1_tujml"]
 [ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="2_6vbb1"]
+[ext_resource type="AudioStream" uid="uid://cosnue5urr2pq" path="res://Assets/Audio/Music/battle.ogg" id="3_pc7b1"]
+[ext_resource type="AudioStream" uid="uid://dbjt1nv74y6e1" path="res://Assets/Audio/Music/battle_intro.ogg" id="4_7w2el"]
 
 [sub_resource type="Resource" id="Resource_i6ufp"]
 script = ExtResource("2_6vbb1")
@@ -31,8 +33,10 @@ dialogue_line = [{
 script = ExtResource("1_tujml")
 allies_paths = Array[NodePath]([NodePath("Player")])
 enemies_paths = Array[NodePath]([NodePath("Player")])
+premusic = ExtResource("4_7w2el")
+music = ExtResource("3_pc7b1")
 battle_program = ExtResource("1_s73k0")
-can_leave = false
+can_leave = true
 leaving_chances = 0.75
 talking_dialogue = SubResource("Resource_7m2jr")
 failed_leaving_dialogue = SubResource("Resource_y5ucb")

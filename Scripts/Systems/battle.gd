@@ -68,9 +68,7 @@ func start_fight(fight: Fight) -> void:
 		
 	#animation
 	visible = true
-	#Slowly stop the global music
-	$Music.stream = fight.music
-	$Music.play()
+	BGM.battle_start(fight.premusic, fight.music)
 	
 	current_battle_program = battle_program["1.0"]
 	var element = current_battle_program[0]
@@ -95,15 +93,13 @@ func end_fight(state: int):
 			magic_bar.visible = false
 		#move allies back to their previous positions
 	for enemy in enemies:
-		enemies_total_max_xp += enemy.get_hp()
 		enemy.get_node("HealthBar").visible = false
 		#move enemies back to their previous positions
 	
 	#animation
 	visible = false
-	$Music.stop() #Slowly stop the music
+	BGM.battle_end()
 	#animation
-	#Slowly return the global music
 	finished.emit(state)
 
 func _physics_process(delta: float) -> void:
@@ -560,13 +556,15 @@ func _on_leave_pressed() -> void:
 		if randf_range(0, 1) <= leaving_chances:
 			#animation
 			var dialogue = Dialogue.new()
-			var last_allie = allies.pop_back().name
+			var allies_list = allies.duplicate()
+			var last_allie = allies_list.pop_back().name
 			var allies_line: String
-			if len(allies) == 0:
+			if len(allies_list) == 0:
 				allies_line = last_allie
 			else:
-				allies_line = ", ".join(allies) + " and " + last_allie
+				allies_line = ", ".join(allies_list) + " and " + last_allie
 			dialogue.dialogue_line = [["[Battle]", allies_line+" escaped."]]
+			dialogue_box.set_dialogue(dialogue)
 			await dialogue_box.finished
 			
 			end_fight(2)
@@ -584,9 +582,10 @@ func _on_leave_pressed() -> void:
 	await dialogue_box.finished
 	
 	if can_leave: #Skip the turn
+		character_turn = 0
 		is_fighting = true
-		enemies_turn()
-		preparing_next_turns()
+		await enemies_turn()
+		await preparing_next_turns()
 		decide()
 	else:
 		toggle_buttons(true)

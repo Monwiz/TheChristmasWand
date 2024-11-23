@@ -125,9 +125,6 @@ texture_hover = SubResource("GradientTexture2D_fhdgk")
 texture_focused = SubResource("GradientTexture2D_22rxi")
 stretch_mode = 0
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
-
 [connection signal="pressed" from="Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Spell" to="." method="_on_spell_pressed"]
 [connection signal="pressed" from="Items" to="." method="_on_items_pressed"]

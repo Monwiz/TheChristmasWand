@@ -3,7 +3,8 @@ class_name Fight
 
 @export_node_path("CharacterBody2D") var allies_paths: Array[NodePath] = ["Player"]
 @export_node_path("CharacterBody2D") var enemies_paths: Array[NodePath]
-@export var music: AudioStream
+@export var premusic: AudioStream = preload("res://Assets/Audio/Music/battle_intro.ogg")
+@export var music: AudioStream = preload("res://Assets/Audio/Music/battle.ogg")
 @export var battle_program: BattleProgram
 @export var can_leave: bool = true
 @export_range(0, 1, 0.01) var leaving_chances: float = 0.75

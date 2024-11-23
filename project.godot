@@ -22,6 +22,7 @@ buses/default_bus_layout="res://Assets/Other/default_bus_layout.tres"
 [autoload]
 
 Stats="*res://Scripts/Global/stats.gd"
+BGM="*res://Scripts/Global/bgm.tscn"
 
 [display]
 
@@ -32,7 +33,9 @@ window/size/viewport_height=720
 
 folder_colors={
 "res://Assets/": "gray",
+"res://Assets/Audio/": "pink",
 "res://Assets/Music/": "purple",
+"res://Assets/Resources/": "teal",
 "res://Assets/Sounds/": "purple",
 "res://Assets/Textures/": "orange",
 "res://Characters/": "red",
