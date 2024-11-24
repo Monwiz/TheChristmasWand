@@ -97,6 +97,7 @@ polygon = PackedVector2Array(-8, 7.5, 7.5, 7.5)
 size = Vector2(16, 16)
 
 [sub_resource type="Animation" id="Animation_ukh8w"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
