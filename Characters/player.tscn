@@ -37,6 +37,7 @@ _data = {
 size = Vector2(16, 8)
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -4)
 script = ExtResource("1_foq6m")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://bc3lg1v47ho8t"]
+[gd_scene load_steps=4 format=3 uid="uid://bc3lg1v47ho8t"]
 
-[node name="Yard" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="1_we8x8"]
+[ext_resource type="PackedScene" uid="uid://cdn8tet00w2je" path="res://Characters/npc.tscn" id="2_soghe"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_q7go8"]
+vertices = PackedVector2Array(312.797, 12.0625, 313.688, 177.156, -0.578125, 174.578, 2.09375, 6.17969)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-7.75, -4, -10.75, 184.5, 323.75, 187.25, 322.75, 2.25)])
+
+[node name="Scene" type="Node2D"]
+scale = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("1_we8x8")]
+position = Vector2(44, 91.75)
+
+[node name="Jack" parent="." instance=ExtResource("2_soghe")]
+position = Vector2(44, 90.75)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_q7go8")

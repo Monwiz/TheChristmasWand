@@ -4,15 +4,21 @@ const PLAYER_MAX_HP = 100
 var player_hp = 100
 var player_magic = 100
 var player_fight_spells: Array[BattleSpell] = [preload("res://Assets/Resources/BattleSpells/kaboom.tres")]
+var _new_position: Vector2
 
 var inventory: Array[Item]
 var interact_spells: Array
+
+var team: int = 0 #1 - Jack Frost, 2 - Snow Queen, 4 - Jethro
 
 func reset():
 	player_hp = 100
 	player_magic = 100
 	player_fight_spells = []
 	interact_spells = []
+	inventory = []
+	team = 0
+	_new_position = Vector2.ZERO
 	
 func add_item(item: Item):
 	if inventory.any(func(item1): return item1.name == item.name):

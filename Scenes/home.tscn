@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bjywvic8b2cu4"]
+[gd_scene load_steps=35 format=4 uid="uid://bjywvic8b2cu4"]
 
 [ext_resource type="Texture2D" uid="uid://c4l31xrcqb8ce" path="res://Assets/Textures/Map/home.png" id="1_gpnea"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/home_tilemap.tres" id="1_imncd"]
@@ -10,6 +10,11 @@
 [ext_resource type="Theme" uid="uid://qagfmr7thawf" path="res://Assets/Other/dialogue.tres" id="8_auh4a"]
 [ext_resource type="Script" path="res://Scripts/Systems/dialogue_box.gd" id="9_7d3ia"]
 [ext_resource type="Script" path="res://Scripts/choices.gd" id="10_hg0uu"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p25p8"]
+vertices = PackedVector2Array(285.953, 51.7188, 288.281, 161.367, 16.6484, 158.109, 15.5938, 51.0234)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(5.5, 41, 6.75, 168, 298.5, 171.5, 295.75, 41.75)])
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qnfts"]
 blend_mode = 2
@@ -251,6 +256,9 @@ mouse_filter = 2
 action_mode = 0
 flat = true
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_p25p8")
+
 [node name="Obstacles" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
@@ -433,8 +441,11 @@ libraries = {
 autoplay = "fade-in"
 
 [node name="Npc" parent="." node_paths=PackedStringArray("dialogue_box") instance=ExtResource("5_khw1g")]
+position = Vector2(86, 55)
+disable_mode = 1
 dialogue = ExtResource("6_o71m7")
 dialogue_box = NodePath("../Gui/DialogueRelevant/DialogueBox")
 
 [connection signal="returned" from="Gui/DialogueRelevant/DialogueBox" to="Gui/Battle" method="set_returned"]
+[connection signal="returned" from="Gui/DialogueRelevant/DialogueBox" to="Npc" method="_on_dialogue_returned"]
 [connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]

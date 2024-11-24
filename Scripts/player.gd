@@ -13,6 +13,8 @@ signal dead()
 
 func _ready() -> void:
 	$HealthBar.value = Stats.player_hp
+	if Stats._new_position != Vector2.ZERO:
+		global_position = Stats._new_position
 
 func _physics_process(delta: float) -> void:
 	if skipping_iteration:
@@ -23,15 +25,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right"): 
 		var direction_x = Input.get_axis("ui_left", "ui_right")
 		velocity.x = direction_x * SPEED
-		ray.scale.x = 1 if direction_x > 0 else -1
+		ray.target_position.x = 12 if direction_x > 0 else -12
 		
 		velocity.y = move_toward(velocity.y, 0, SPEED)
+		ray.target_position.y = 0
 	elif Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):
 		var direction_y = Input.get_axis("ui_up", "ui_down")
 		velocity.y = direction_y * SPEED
-		ray.scale.y = 1 if direction_y > 0 else -1
+		ray.target_position.y = 12 if direction_y > 0 else -12
 		
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		ray.target_position.x = 0
 		
 		
 	elif Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
@@ -40,14 +44,14 @@ func _physics_process(delta: float) -> void:
 		var direction_y = Input.get_axis("ui_up", "ui_down")
 		if direction_y:
 			velocity.y = direction_y * SPEED
-			ray.scale.y = 1 if direction_y > 0 else -1
+			ray.target_position.y = 12 if direction_y > 0 else -12
 	elif Input.is_action_just_released("ui_up") or Input.is_action_just_released("ui_down"):
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		
 		var direction_x = Input.get_axis("ui_left", "ui_right")
 		if direction_x:
 			velocity.x = direction_x * SPEED
-			ray.scale.x = 1 if direction_x > 0 else -1
+			ray.target_position.x = 12 if direction_x > 0 else -12
 			
 	move_and_slide()
 	

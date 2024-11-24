@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdn8tet00w2je"]
 
-[ext_resource type="Script" path="res://Scripts/Classes/npc.gd" id="1_khoh8"]
+[ext_resource type="Script" path="res://Scripts/Classes/Characters/jack.gd" id="1_yd7qv"]
 [ext_resource type="Texture2D" uid="uid://dffij6olj656p" path="res://Assets/Textures/icon.svg" id="2_hgs4n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72ywd"]
@@ -26,8 +26,12 @@ animations = [{
 size = Vector2(11.3333, 4.66667)
 
 [node name="Npc" type="CharacterBody2D"]
-position = Vector2(97.75, 57.75)
-script = ExtResource("1_khoh8")
+y_sort_enabled = true
+position = Vector2(0, -5)
+motion_mode = 1
+slide_on_ceiling = false
+floor_stop_on_slope = false
+script = ExtResource("1_yd7qv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 0
@@ -39,3 +43,8 @@ animation = &"walking"
 position = Vector2(-0.25, 4.75)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_5rjqt")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 80.0
+target_desired_distance = 80.0
+avoidance_enabled = true
