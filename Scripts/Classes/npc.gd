@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name npc
 
 @export var dialogue : Dialogue
-@export var dialogue_box : Panel #make this automatic
+@onready var dialogue_box : Panel = $/root/Scene/Gui/DialogueRelevant/DialogueBox
 @export var movement_type: Movement = Movement.None
 enum Movement { None, Random, Exact, Follow }
 @export var is_following: Node2D

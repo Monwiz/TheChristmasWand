@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=2 format=3 uid="uid://ccgghl2pyuu0h"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="1_jkbok"]
+
+[resource]
+script = ExtResource("1_jkbok")
+dialogue_line = [["[*]", "You have a new letter from Santa"], ["Santa Claus", "test"]]

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=2 format=3 uid="uid://bkvqihtq53kf8"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="1_huu48"]
+
+[resource]
+script = ExtResource("1_huu48")
+dialogue_line = [["[*]", "You don't have new letters."]]

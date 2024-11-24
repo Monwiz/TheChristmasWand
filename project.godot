@@ -23,6 +23,7 @@ buses/default_bus_layout="res://Assets/Other/default_bus_layout.tres"
 
 Stats="*res://Scripts/Global/stats.gd"
 BGM="*res://Scripts/Global/bgm.tscn"
+WorldStats="*res://Scripts/Global/world_stats.gd"
 
 [display]
 
