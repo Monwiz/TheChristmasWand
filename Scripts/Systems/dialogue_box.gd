@@ -22,7 +22,6 @@ func set_dialogue(to_dialogue:Dialogue):
 	next_line()
 
 func next_line():
-	print("A")
 	$Dialogue.visible_characters = 0
 	if current_dialogue == null:
 		return

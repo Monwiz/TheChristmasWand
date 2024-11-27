@@ -7,6 +7,7 @@ script = ExtResource("1_lfrb6")
 calculation_type = 0
 health_value = 30
 name = "Salad"
+icon = "res://Assets/Textures/snow.png"
 stackable = false
 quantity = 1
 description = ""

@@ -9,6 +9,7 @@ var _new_position: Vector2
 var inventory: Array[Item]
 var interact_spells: Array
 
+var menu #set by the menu
 var team: int = 0 #1 - Jack Frost, 2 - Snow Queen, 4 - Jethro
 
 func reset():
@@ -55,11 +56,17 @@ func update_name_stackable(item: Item):
 		name_split.append("["+str(item.quantity)+"]")
 	item.name = " ".join(name_split)
 		
-#func _ready() -> void:		#for testing purposes
-#	var salad = preload("res://Assets/Resources/Items/salad.tres")
-#	add_item(salad)
+func _ready() -> void:		#for testing purposes
+	for n in 5:
+		var stone = load("res://Assets/Resources/Items/stone.tres")
+		add_item(stone)
+		var boulder = load("res://Assets/Resources/Items/boulder.tres")
+		add_item(boulder)
 #	add_item(preload("res://Assets/Resources/Items/stone.tres"))
 #	add_item(salad.duplicate())
-
+func open_menu():
+	menu.open()
+func close_menu():
+	menu.close()
 #If you use this in your project, you can add the speed of fighting of an entity
 #(and edit ../Systems/battle.gd), their strength

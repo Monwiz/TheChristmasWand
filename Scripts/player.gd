@@ -7,6 +7,7 @@ var outline = preload("res://Assets/Other/friend_outline.tres")
 var goal_outline = preload("res://Assets/Other/goal_outline.tres")
 var defense: int = 1
 var skipping_iteration: bool = false
+var menu_open = false
 @onready var ray: RayCast2D = $RayCast2D
 
 signal dead()
@@ -60,6 +61,14 @@ func _physics_process(delta: float) -> void:
 			var collider = ray.get_collider()
 			if collider.has_method("interact"):
 				collider.interact(self)
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if menu_open:
+			Stats.close_menu()
+			menu_open = false
+		else:
+			Stats.open_menu()
+			menu_open = true
 
 func hurt(val: int) -> void:
 	Stats.player_hp -= val / defense

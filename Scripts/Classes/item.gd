@@ -2,6 +2,7 @@ extends Resource
 class_name Item
 
 @export var name: String
+@export_file("*.png") var icon
 var type: Types = Types.SIMPLE
 @export var stackable: bool = false #it might be confusing for the player, so don't change this
 @export var quantity: int = 1

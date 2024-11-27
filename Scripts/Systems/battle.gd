@@ -41,6 +41,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func start_fight(fight: Fight) -> void:
+	#Stats.menu.openable = false
 	for path in fight.allies_paths:
 		allies.append($/root/Scene.get_node(path)) #I haven't found a way in Godot to always use absolute NodePaths
 	for path in fight.enemies_paths:
@@ -84,6 +85,7 @@ func start_fight(fight: Fight) -> void:
 	decide()
 
 func end_fight(state: int):
+	#Stats.menu.openable = true
 	set_physics_process(false)
 	for allie in allies:
 		allie.process_mode = Node.PROCESS_MODE_INHERIT

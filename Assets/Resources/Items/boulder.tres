@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://uytnyiqikj8t"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/item.gd" id="1_3jf1o"]
+
+[resource]
+script = ExtResource("1_3jf1o")
+name = "Boulder"
+icon = "res://Assets/Textures/stone.png"
+stackable = false
+quantity = 1
+description = ""
