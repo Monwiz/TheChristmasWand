@@ -16,11 +16,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(5.5, 41, 6.75, 168, 298
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qnfts"]
 blend_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_hi3af"]
+[sub_resource type="Gradient" id="Gradient_5h0ru"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4x3kl"]
-gradient = SubResource("Gradient_hi3af")
+gradient = SubResource("Gradient_5h0ru")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.12844, 0.142202)
@@ -322,9 +322,6 @@ position = Vector2(-0.375, 2.125)
 shape = SubResource("RectangleShape2D_1fkv3")
 debug_color = Color(1, 1, 0, 0.419608)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(168, 82)
-
 [node name="Player" parent="." instance=ExtResource("1_m65b8")]
 light_mask = 0
 y_sort_enabled = true
@@ -333,6 +330,14 @@ position = Vector2(178, 110)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
 z_index = -1
 occluder = SubResource("OccluderPolygon2D_tt284")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = -64
+limit_right = 1280
+limit_bottom = 720
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.25

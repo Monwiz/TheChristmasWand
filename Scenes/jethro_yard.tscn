@@ -248,7 +248,6 @@ z_as_relative = false
 position = Vector2(329.006, 358.08)
 script = ExtResource("6_u0g2p")
 new_scene_location = "res://Scenes/jethro_cabin.tscn"
-new_position = Vector2(1150, 600)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Layers/Door"]
 position = Vector2(-0.625, -18)

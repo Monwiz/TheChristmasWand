@@ -1,0 +1,336 @@
+[gd_scene load_steps=29 format=4 uid="uid://bn4jsbmkfohdc"]
+
+[ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_a8gbl"]
+[ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_3vslu"]
+[ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="3_6pohb"]
+[ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="4_4wy5r"]
+[ext_resource type="Texture2D" uid="uid://bb77qvqhjpodv" path="res://Assets/Textures/Map/jethrocabin.png" id="5_ebgwa"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1eny7"]
+vertices = PackedVector2Array(285.953, 51.7188, 288.281, 161.367, 16.6484, 158.109, 15.5938, 51.0234)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(5.5, 41, 6.75, 168, 298.5, 171.5, 295.75, 41.75)])
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_abiuw"]
+closed = false
+polygon = PackedVector2Array(-8, 7.5, 7.5, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd1qv"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_ukh8w"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+
+[sub_resource type="Animation" id="Animation_vof8y"]
+resource_name = "fade-in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gshw4"]
+resource_name = "fade-out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.25, 2.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ej10s"]
+_data = {
+"RESET": SubResource("Animation_ukh8w"),
+"fade-in": SubResource("Animation_vof8y"),
+"fade-out": SubResource("Animation_gshw4")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n6051"]
+blend_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2nso"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(144, 48, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eye2"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(0, 48, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvfih"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(32, 48, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsvtb"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(64, 48, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q1b1f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eye2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvfih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsvtb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x2i3"]
+size = Vector2(31.75, 16.25)
+
+[sub_resource type="Gradient" id="Gradient_q86ow"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_spiew"]
+gradient = SubResource("Gradient_q86ow")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.12844, 0.142202)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7e4l"]
+size = Vector2(64, 31.7051)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktppk"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(96, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pky5n"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qjif"]
+atlas = ExtResource("5_ebgwa")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1h7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pky5n")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_8qjif")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_564q0"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qr2ru"]
+gradient = SubResource("Gradient_564q0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.12844, 0.142202)
+
+[node name="Scene" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+scale = Vector2(4, 4)
+
+[node name="Gui" parent="." instance=ExtResource("1_a8gbl")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_1eny7")
+
+[node name="Obstacles" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
+build_mode = 1
+polygon = PackedVector2Array(16, 64, 16, 144, 240, 144, 240, 112, 272, 112, 272, 96, 240, 96, 240, 64)
+
+[node name="Player" parent="." instance=ExtResource("2_3vslu")]
+light_mask = 0
+y_sort_enabled = true
+position = Vector2(246.25, 101)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
+z_index = -1
+occluder = SubResource("OccluderPolygon2D_abiuw")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = -64
+limit_right = 1088
+limit_bottom = 640
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+editor_draw_limits = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.25
+blend_mode = 1
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(264.25, 104.25)
+script = ExtResource("3_6pohb")
+new_scene_location = "res://Scenes/jethro_yard.tscn"
+new_position = Vector2(1316, 1464)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource("RectangleShape2D_sd1qv")
+debug_color = Color(0, 0.054902, 1, 0.419608)
+
+[node name="Fading" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ej10s")
+}
+autoplay = "fade-in"
+
+[node name="Layers" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Background" type="CanvasGroup" parent="Layers"]
+z_index = -5
+
+[node name="TileMap" type="TileMapLayer" parent="Layers/Background"]
+tile_map_data = PackedByteArray("AAABAAIABQAAAAEAAAABAAEABQAAAAEAAAABAAAABQAAAAEAAAACAAAABQAAAAEAAAACAAEABQAAAAEAAAACAAIABQAAAAEAAAADAAAABQAAAAEAAAADAAEABQAAAAEAAAADAAIABQAAAAEAAAAEAAAABQAAAAEAAAAEAAEABQAAAAEAAAAEAAIABQAAAAEAAAAFAAAABQAAAAEAAAAFAAEABQAAAAEAAAAFAAIABQAAAAEAAAAGAAAABQAAAAEAAAAGAAEABQAAAAEAAAAGAAIABQAAAAEAAAAHAAAABQAAAAEAAAAHAAEABQAAAAEAAAAHAAIABQAAAAEAAAAIAAAABQAAAAEAAAAIAAEABQAAAAEAAAAIAAIABQAAAAEAAAAJAAAABQAAAAEAAAAJAAEABQAAAAEAAAAJAAIABQAAAAEAAAAKAAAABQAAAAEAAAAKAAEABQAAAAEAAAAKAAIABQAAAAEAAAALAAAABQAAAAEAAAALAAEABQAAAAEAAAALAAIABQAAAAEAAAAMAAAABQAAAAEAAAAMAAEABQAAAAEAAAAMAAIABQAAAAEAAAANAAAABQAAAAEAAAANAAEABQAAAAEAAAANAAIABQAAAAEAAAAOAAAABQAAAAEAAAAOAAEABQAAAAEAAAAOAAIABQAAAAEAAAABAAMABQAAAAEAAAACAAMABQAAAAEAAAADAAMABQAAAAEAAAAEAAMABQAAAAEAAAAFAAMABQAAAAEAAAAGAAMABQAAAAEAAAAHAAMABQAAAAEAAAAIAAMABQAAAAEAAAAJAAMABQAAAAEAAAAKAAMABQAAAAEAAAALAAMABQAAAAEAAAAMAAMABQAAAAEAAAANAAMABQAAAAEAAAAOAAMABQAAAAEAAAANAAQABQAAAAAAAAAOAAQABQABAAAAAAALAAQABQAAAAAAAAAMAAQABQABAAAAAAAJAAQABQAAAAAAAAAKAAQABQABAAAAAAAHAAQABQAAAAAAAAAIAAQABQABAAAAAAAFAAQABQAAAAAAAAAGAAQABQABAAAAAAADAAQABQAAAAAAAAAEAAQABQABAAAAAAABAAQABQAAAAAAAAACAAQABQABAAAAAAABAAUABQAAAAAAAAACAAUABQABAAAAAAABAAYABQAAAAAAAAACAAYABQABAAAAAAADAAYABQAAAAAAAAAEAAYABQABAAAAAAAFAAYABQAAAAAAAAAGAAYABQABAAAAAAAFAAUABQAAAAAAAAAGAAUABQABAAAAAAAHAAUABQAAAAAAAAAIAAUABQABAAAAAAAJAAUABQAAAAAAAAAKAAUABQABAAAAAAALAAUABQAAAAAAAAAMAAUABQABAAAAAAANAAUABQAAAAAAAAAOAAUABQABAAAAAAANAAYABQAAAAAAAAAOAAYABQABAAAAAAALAAYABQAAAAAAAAAMAAYABQABAAAAAAAJAAYABQAAAAAAAAAKAAYABQABAAAAAAAHAAYABQAAAAAAAAAIAAYABQABAAAAAAADAAUABQAAAAAAAAAEAAUABQABAAAAAAABAAcABQAAAAAAAAACAAcABQABAAAAAAADAAcABQAAAAAAAAAEAAcABQABAAAAAAAFAAcABQAAAAAAAAAGAAcABQABAAAAAAAHAAcABQAAAAAAAAAIAAcABQABAAAAAAAJAAcABQAAAAAAAAAKAAcABQABAAAAAAALAAcABQAAAAAAAAAMAAcABQABAAAAAAANAAcABQAAAAAAAAAOAAcABQABAAAAAAABAAgABQAAAAAAAAACAAgABQABAAAAAAADAAgABQAAAAAAAAAEAAgABQABAAAAAAAFAAgABQAAAAAAAAAGAAgABQABAAAAAAAHAAgABQAAAAAAAAAIAAgABQABAAAAAAAJAAgABQAAAAAAAAAKAAgABQABAAAAAAALAAgABQAAAAAAAAAMAAgABQABAAAAAAANAAgABQAAAAAAAAAOAAgABQABAAAAAAAPAAYABQAAAAAAAAAQAAYABQABAAAAAAA=")
+tile_set = ExtResource("4_4wy5r")
+
+[node name="Clip" type="TileMapLayer" parent="Layers/Background"]
+material = SubResource("CanvasItemMaterial_n6051")
+position = Vector2(0, -8)
+tile_map_data = PackedByteArray("AAAEAAIABQAEAAAAAAALAAIABQAEAAAAAAA=")
+tile_set = ExtResource("4_4wy5r")
+
+[node name="Background2" type="TileMapLayer" parent="Layers"]
+z_index = -4
+position = Vector2(0, -8)
+tile_map_data = PackedByteArray("AAAHAP//AQAAAAIAAAAHAAAAAQAAAAIAAAAIAP//AQABAAIAAAAIAAAAAQABAAIAAAAHAAEAAQAAAAIAAAAIAAEAAQABAAIAAAAHAAIAAQAAAAIAAAAIAAIAAQABAAIAAAACAAQABQAIAAMAAAA=")
+tile_set = ExtResource("4_4wy5r")
+
+[node name="Door" type="Sprite2D" parent="Layers/Background2"]
+visible = false
+position = Vector2(26.25, 64)
+texture = SubResource("AtlasTexture_f2nso")
+
+[node name="Windows" type="TileMapLayer" parent="Layers"]
+z_index = -4
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 8)
+tile_map_data = PackedByteArray("AAAEAAEABQACAAAAAAALAAEABQACAAAAAAA=")
+tile_set = ExtResource("4_4wy5r")
+
+[node name="Objects" type="Node2D" parent="Layers"]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Fireplace" type="StaticBody2D" parent="Layers/Objects"]
+y_sort_enabled = true
+position = Vector2(128, 56)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Layers/Objects/Fireplace"]
+z_index = -4
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_q1b1f")
+autoplay = "default"
+frame_progress = 0.732231
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Fireplace"]
+position = Vector2(0.125, 8.875)
+shape = SubResource("RectangleShape2D_0x2i3")
+
+[node name="PointLight2D" type="PointLight2D" parent="Layers/Objects/Fireplace"]
+position = Vector2(0, 11.875)
+scale = Vector2(3.25, 1)
+color = Color(1, 0.564706, 0, 1)
+energy = 1.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_spiew")
+
+[node name="Table" type="StaticBody2D" parent="Layers/Objects"]
+z_as_relative = false
+position = Vector2(128, 109)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Table"]
+position = Vector2(0, 4.17548)
+shape = SubResource("RectangleShape2D_j7e4l")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Layers/Objects/Table"]
+light_mask = 2
+visibility_layer = 2
+z_as_relative = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/Table/CanvasGroup"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0.125, 3.5)
+texture = SubResource("AtlasTexture_ktppk")
+offset = Vector2(0, -8)
+
+[node name="Food" type="TileMapLayer" parent="Layers/Objects/Table/CanvasGroup"]
+light_mask = 2
+visibility_layer = 2
+z_as_relative = false
+position = Vector2(-119.875, -92.75)
+tile_map_data = PackedByteArray("AAAHAAUABQAGAAMAAAAGAAUABQAGAAQAAAAIAAUABQAHAAQAAAAGAAQABQAHAAMAAAA=")
+tile_set = ExtResource("4_4wy5r")
+
+[node name="Candle" type="AnimatedSprite2D" parent="Layers/Objects/Table/CanvasGroup"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0.125, -14.75)
+sprite_frames = SubResource("SpriteFrames_k1h7m")
+autoplay = "default"
+frame_progress = 0.135745
+
+[node name="PointLight2D" type="PointLight2D" parent="Layers/Objects/Table/CanvasGroup/Candle"]
+scale = Vector2(0.75, 0.75)
+color = Color(1, 0.564706, 0, 1)
+energy = 1.5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_qr2ru")
+
+[connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]
