@@ -1,12 +1,12 @@
 [gd_scene load_steps=32 format=4 uid="uid://bjywvic8b2cu4"]
 
-[ext_resource type="Texture2D" uid="uid://c4l31xrcqb8ce" path="res://Assets/Textures/Map/home.png" id="1_gpnea"]
-[ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="1_imncd"]
-[ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="1_m65b8"]
-[ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_wrqyb"]
-[ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="5_i71b0"]
-[ext_resource type="PackedScene" uid="uid://cdn8tet00w2je" path="res://Characters/npc.tscn" id="5_khw1g"]
-[ext_resource type="Resource" uid="uid://b0bos5p2faec3" path="res://Assets/Resources/Dialogue/example_dialogue.tres" id="6_o71m7"]
+[ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_eyqjo"]
+[ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="2_jhrws"]
+[ext_resource type="Texture2D" uid="uid://c4l31xrcqb8ce" path="res://Assets/Textures/Map/home.png" id="3_15dyl"]
+[ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="4_oir2a"]
+[ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="5_0foww"]
+[ext_resource type="PackedScene" uid="uid://cdn8tet00w2je" path="res://Characters/npc.tscn" id="6_ho72p"]
+[ext_resource type="Resource" uid="uid://b0bos5p2faec3" path="res://Assets/Resources/Dialogue/example_dialogue.tres" id="7_r6r0i"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_p25p8"]
 vertices = PackedVector2Array(285.953, 51.7188, 288.281, 161.367, 16.6484, 158.109, 15.5938, 51.0234)
@@ -26,15 +26,15 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.12844, 0.142202)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8bsri"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(0, 48, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rhnqy"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(32, 48, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqx66"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(64, 48, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1mrk6"]
@@ -58,7 +58,7 @@ animations = [{
 size = Vector2(31.75, 16.25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_800dc"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(96, 48, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbvgp"]
@@ -68,14 +68,14 @@ size = Vector2(24, 12)
 polygon = PackedVector2Array(-9.5, 7.75, 11, 7.75, 11, 12.25, 7.25, 16, -13, 16, -13, 11.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pjor"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(128, 0, 32, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icdum"]
 size = Vector2(12.25, 13.25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5scu"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(96, 0, 32, 48)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_302u3"]
@@ -83,7 +83,7 @@ radius = 15.5
 height = 41.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bghoy"]
-atlas = ExtResource("1_gpnea")
+atlas = ExtResource("3_15dyl")
 region = Rect2(0, 16, 32, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fkv3"]
@@ -166,7 +166,7 @@ _data = {
 y_sort_enabled = true
 scale = Vector2(4, 4)
 
-[node name="Gui" parent="." instance=ExtResource("1_wrqyb")]
+[node name="Gui" parent="." instance=ExtResource("1_eyqjo")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
@@ -186,23 +186,23 @@ z_index = -5
 
 [node name="TileMap" type="TileMapLayer" parent="Layers/Background"]
 tile_map_data = PackedByteArray("AAADAAQAAQAAAAAAAAADAAUAAQAAAAAAAAADAAYAAQAAAAAAAAACAAYAAQABAAAAAAACAAcAAQABAAAAAAACAAgAAQABAAAAAAACAAQAAQABAAAAAAACAAUAAQABAAAAAAABAAQAAQAAAAAAAAABAAUAAQAAAAAAAAABAAYAAQAAAAAAAAABAAcAAQAAAAAAAAABAAgAAQAAAAAAAAABAAkAAQAAAAAAAAACAAkAAQABAAAAAAADAAcAAQAAAAAAAAADAAgAAQAAAAAAAAADAAkAAQAAAAAAAAAEAAQAAQABAAAAAAAEAAUAAQABAAAAAAAEAAYAAQABAAAAAAAEAAcAAQABAAAAAAAEAAgAAQABAAAAAAAEAAkAAQABAAAAAAAFAAQAAQAAAAAAAAAFAAUAAQAAAAAAAAAFAAYAAQAAAAAAAAAFAAcAAQAAAAAAAAAFAAgAAQAAAAAAAAAFAAkAAQAAAAAAAAAGAAQAAQABAAAAAAAGAAUAAQABAAAAAAAGAAYAAQABAAAAAAAGAAcAAQABAAAAAAAGAAgAAQABAAAAAAAGAAkAAQABAAAAAAAHAAQAAQAAAAAAAAAHAAUAAQAAAAAAAAAHAAYAAQAAAAAAAAAHAAcAAQAAAAAAAAAHAAgAAQAAAAAAAAAHAAkAAQAAAAAAAAAIAAQAAQABAAAAAAAIAAUAAQABAAAAAAAIAAYAAQABAAAAAAAIAAcAAQABAAAAAAAIAAgAAQABAAAAAAAIAAkAAQABAAAAAAAJAAQAAQAAAAAAAAAJAAUAAQAAAAAAAAAJAAYAAQAAAAAAAAAJAAcAAQAAAAAAAAAJAAgAAQAAAAAAAAAJAAkAAQAAAAAAAAAKAAQAAQABAAAAAAAKAAUAAQABAAAAAAAKAAYAAQABAAAAAAAKAAcAAQABAAAAAAAKAAgAAQABAAAAAAAKAAkAAQABAAAAAAALAAQAAQAAAAAAAAALAAUAAQAAAAAAAAALAAYAAQAAAAAAAAALAAcAAQAAAAAAAAALAAgAAQAAAAAAAAALAAkAAQAAAAAAAAAMAAQAAQABAAAAAAAMAAUAAQABAAAAAAAMAAYAAQABAAAAAAAMAAcAAQABAAAAAAAMAAgAAQABAAAAAAAMAAkAAQABAAAAAAANAAQAAQAAAAAAAAANAAUAAQAAAAAAAAANAAYAAQAAAAAAAAANAAcAAQAAAAAAAAANAAgAAQAAAAAAAAANAAkAAQAAAAAAAAAOAAQAAQABAAAAAAAOAAUAAQABAAAAAAAOAAYAAQABAAAAAAAOAAcAAQABAAAAAAAOAAgAAQABAAAAAAAOAAkAAQABAAAAAAAPAAQAAQAAAAAAAAAPAAUAAQAAAAAAAAAPAAYAAQAAAAAAAAAPAAcAAQAAAAAAAAAPAAgAAQAAAAAAAAAPAAkAAQAAAAAAAAAQAAQAAQABAAAAAAAQAAUAAQABAAAAAAAQAAYAAQABAAAAAAAQAAcAAQABAAAAAAAQAAgAAQABAAAAAAAQAAkAAQABAAAAAAABAAMAAQAAAAAAAAACAAMAAQABAAAAAAADAAMAAQAAAAAAAAAEAAMAAQABAAAAAAAFAAMAAQAAAAAAAAAGAAMAAQABAAAAAAAHAAMAAQAAAAAAAAAIAAMAAQABAAAAAAAJAAMAAQAAAAAAAAAKAAMAAQABAAAAAAALAAMAAQAAAAAAAAAMAAMAAQABAAAAAAANAAMAAQAAAAAAAAAOAAMAAQABAAAAAAAPAAMAAQAAAAAAAAAQAAMAAQABAAAAAAARAAMAAQAAAAAAAAARAAQAAQAAAAAAAAARAAUAAQAAAAAAAAARAAYAAQAAAAAAAAARAAcAAQAAAAAAAAARAAgAAQAAAAAAAAARAAkAAQAAAAAAAAASAAkAAQAAAAAAAAATAAkAAQABAAAAAAABAAIAAQACAAAAAAABAAEAAQACAAAAAAABAAAAAQACAAAAAAACAAAAAQACAAAAAAACAAEAAQACAAAAAAACAAIAAQACAAAAAAADAAAAAQACAAAAAAADAAEAAQACAAAAAAADAAIAAQACAAAAAAAEAAAAAQACAAAAAAAEAAEAAQACAAAAAAAEAAIAAQACAAAAAAAFAAAAAQACAAAAAAAFAAEAAQACAAAAAAAFAAIAAQACAAAAAAAGAAAAAQACAAAAAAAGAAEAAQACAAAAAAAGAAIAAQACAAAAAAAHAAAAAQACAAAAAAAHAAEAAQACAAAAAAAHAAIAAQACAAAAAAAIAAAAAQACAAAAAAAIAAEAAQACAAAAAAAIAAIAAQACAAAAAAAJAAAAAQACAAAAAAAJAAEAAQACAAAAAAAJAAIAAQACAAAAAAAKAAAAAQACAAAAAAAKAAEAAQACAAAAAAAKAAIAAQACAAAAAAALAAAAAQACAAAAAAALAAEAAQACAAAAAAALAAIAAQACAAAAAAAMAAAAAQACAAAAAAAMAAEAAQACAAAAAAAMAAIAAQACAAAAAAANAAAAAQACAAAAAAANAAEAAQACAAAAAAANAAIAAQACAAAAAAAOAAAAAQACAAAAAAAOAAEAAQACAAAAAAAOAAIAAQACAAAAAAAPAAAAAQACAAAAAAAPAAEAAQACAAAAAAAPAAIAAQACAAAAAAAQAAAAAQACAAAAAAAQAAEAAQACAAAAAAAQAAIAAQACAAAAAAARAAAAAQACAAAAAAARAAEAAQACAAAAAAARAAIAAQACAAAAAAA=")
-tile_set = ExtResource("1_imncd")
+tile_set = ExtResource("2_jhrws")
 
 [node name="Clip" type="TileMapLayer" parent="Layers/Background"]
 material = SubResource("CanvasItemMaterial_qnfts")
 position = Vector2(0, -8)
 tile_map_data = PackedByteArray("AAADAAIAAQAIAAQAAGADAAEAAQAJAAQAAGAGAAIAAQAIAAQAAGAGAAEAAQAJAAQAAGAMAAIAAQAIAAQAAGAMAAEAAQAJAAQAAGAPAAIAAQAIAAQAAGAPAAEAAQAJAAQAAGA=")
-tile_set = ExtResource("1_imncd")
+tile_set = ExtResource("2_jhrws")
 
 [node name="Background2" type="TileMapLayer" parent="Layers"]
 z_index = -4
 tile_map_data = PackedByteArray("AAAOAAgAAQAFAAIAAAAFAAgAAQADAAIAAAAFAAUAAQADAAAAAAAFAAYAAQADAAEAAAAFAAcAAQADAAEAAAAGAAgAAQAEAAIAAAAHAAgAAQAEAAIAAAAIAAgAAQAEAAIAAAAJAAgAAQAEAAIAAAAKAAgAAQAEAAIAAAALAAgAAQAEAAIAAAAMAAgAAQAEAAIAAAANAAgAAQAEAAIAAAAOAAcAAQAFAAEAAAAOAAYAAQAFAAEAAAAOAAUAAQAFAAAAAAAGAAUAAQAEAAAAAAAHAAUAAQAEAAAAAAAIAAUAAQAEAAAAAAAJAAUAAQAEAAAAAAAKAAUAAQAEAAAAAAALAAUAAQAEAAAAAAAMAAUAAQAEAAAAAAANAAUAAQAEAAAAAAANAAYAAQAEAAEAAAAMAAYAAQAEAAEAAAALAAYAAQAEAAEAAAAKAAYAAQAEAAEAAAAJAAYAAQAEAAEAAAAIAAYAAQAEAAEAAAAHAAYAAQAEAAEAAAAGAAYAAQAEAAEAAAAGAAcAAQAEAAEAAAAHAAcAAQAEAAEAAAAIAAcAAQAEAAEAAAAJAAcAAQAEAAEAAAAKAAcAAQAEAAEAAAALAAcAAQAEAAEAAAAMAAcAAQAEAAEAAAANAAcAAQAEAAEAAAAJAAEAAQAAAAIAAAAKAAEAAQABAAIAAAAJAAAAAQAAAAIAAAAKAAAAAQABAAIAAAAJAP//AQAAAAIAAAAKAP//AQABAAIAAAA=")
-tile_set = ExtResource("1_imncd")
+tile_set = ExtResource("2_jhrws")
 
 [node name="Windows" type="TileMapLayer" parent="Layers"]
 position = Vector2(0, 8)
 tile_map_data = PackedByteArray("AAADAAAAAQACAAEAAAADAAEAAQACAAIAAAAGAAEAAQACAAIAAAAPAAAAAQACAAEAAAAPAAEAAQACAAIAAAAMAAAAAQACAAEAAAAMAAEAAQACAAIAAAAGAAAAAQACAAEAAAA=")
-tile_set = ExtResource("1_imncd")
+tile_set = ExtResource("2_jhrws")
 
 [node name="PointLight2D" type="PointLight2D" parent="Layers/Windows"]
 position = Vector2(55.75, 7.99983)
@@ -322,7 +322,7 @@ position = Vector2(-0.375, 2.125)
 shape = SubResource("RectangleShape2D_1fkv3")
 debug_color = Color(1, 1, 0, 0.419608)
 
-[node name="Player" parent="." instance=ExtResource("1_m65b8")]
+[node name="Player" parent="." instance=ExtResource("4_oir2a")]
 light_mask = 0
 y_sort_enabled = true
 position = Vector2(178, 110)
@@ -345,7 +345,7 @@ blend_mode = 1
 
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(312.25, 152.25)
-script = ExtResource("5_i71b0")
+script = ExtResource("5_0foww")
 new_scene_location = "res://Scenes/yard.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
@@ -358,9 +358,9 @@ libraries = {
 }
 autoplay = "fade-in"
 
-[node name="Npc" parent="." instance=ExtResource("5_khw1g")]
+[node name="Npc" parent="." instance=ExtResource("6_ho72p")]
 position = Vector2(86, 55)
 disable_mode = 1
-dialogue = ExtResource("6_o71m7")
+dialogue = ExtResource("7_r6r0i")
 
 [connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]

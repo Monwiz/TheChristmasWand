@@ -1,15 +1,15 @@
 [gd_scene load_steps=29 format=4 uid="uid://bn4jsbmkfohdc"]
 
-[ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_a8gbl"]
-[ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_3vslu"]
-[ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="3_6pohb"]
-[ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="4_4wy5r"]
-[ext_resource type="Texture2D" uid="uid://bb77qvqhjpodv" path="res://Assets/Textures/Map/jethrocabin.png" id="5_ebgwa"]
+[ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_vtu8o"]
+[ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_go2ql"]
+[ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="3_rviid"]
+[ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="4_wuq1e"]
+[ext_resource type="Texture2D" uid="uid://bb77qvqhjpodv" path="res://Assets/Textures/Map/jethrocabin.png" id="5_n3siw"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1eny7"]
-vertices = PackedVector2Array(285.953, 51.7188, 288.281, 161.367, 16.6484, 158.109, 15.5938, 51.0234)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_k5sqw"]
+vertices = PackedVector2Array(230, 134, 26, 134, 26, 74, 230, 74)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(5.5, 41, 6.75, 168, 298.5, 171.5, 295.75, 41.75)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(16, 64, 240, 64, 240, 144, 16, 144)])
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_abiuw"]
 closed = false
@@ -88,19 +88,19 @@ _data = {
 blend_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f2nso"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(144, 48, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4eye2"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(0, 48, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvfih"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(32, 48, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jsvtb"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(64, 48, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q1b1f"]
@@ -136,15 +136,15 @@ fill_to = Vector2(0.12844, 0.142202)
 size = Vector2(64, 31.7051)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ktppk"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(96, 0, 64, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pky5n"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qjif"]
-atlas = ExtResource("5_ebgwa")
+atlas = ExtResource("5_n3siw")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k1h7m"]
@@ -175,11 +175,11 @@ z_as_relative = false
 y_sort_enabled = true
 scale = Vector2(4, 4)
 
-[node name="Gui" parent="." instance=ExtResource("1_a8gbl")]
+[node name="Gui" parent="." instance=ExtResource("1_vtu8o")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 visible = false
-navigation_polygon = SubResource("NavigationPolygon_1eny7")
+navigation_polygon = SubResource("NavigationPolygon_k5sqw")
 
 [node name="Obstacles" type="StaticBody2D" parent="."]
 
@@ -187,7 +187,7 @@ navigation_polygon = SubResource("NavigationPolygon_1eny7")
 build_mode = 1
 polygon = PackedVector2Array(16, 64, 16, 144, 240, 144, 240, 112, 272, 112, 272, 96, 240, 96, 240, 64)
 
-[node name="Player" parent="." instance=ExtResource("2_3vslu")]
+[node name="Player" parent="." instance=ExtResource("2_go2ql")]
 light_mask = 0
 y_sort_enabled = true
 position = Vector2(246.25, 101)
@@ -211,8 +211,8 @@ blend_mode = 1
 
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(264.25, 104.25)
-script = ExtResource("3_6pohb")
-new_scene_location = "res://Scenes/jethro_yard.tscn"
+script = ExtResource("3_rviid")
+new_scene_location = "res://Scenes/4jethro_yard.tscn"
 new_position = Vector2(1316, 1464)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
@@ -234,19 +234,19 @@ z_index = -5
 
 [node name="TileMap" type="TileMapLayer" parent="Layers/Background"]
 tile_map_data = PackedByteArray("AAABAAIABQAAAAEAAAABAAEABQAAAAEAAAABAAAABQAAAAEAAAACAAAABQAAAAEAAAACAAEABQAAAAEAAAACAAIABQAAAAEAAAADAAAABQAAAAEAAAADAAEABQAAAAEAAAADAAIABQAAAAEAAAAEAAAABQAAAAEAAAAEAAEABQAAAAEAAAAEAAIABQAAAAEAAAAFAAAABQAAAAEAAAAFAAEABQAAAAEAAAAFAAIABQAAAAEAAAAGAAAABQAAAAEAAAAGAAEABQAAAAEAAAAGAAIABQAAAAEAAAAHAAAABQAAAAEAAAAHAAEABQAAAAEAAAAHAAIABQAAAAEAAAAIAAAABQAAAAEAAAAIAAEABQAAAAEAAAAIAAIABQAAAAEAAAAJAAAABQAAAAEAAAAJAAEABQAAAAEAAAAJAAIABQAAAAEAAAAKAAAABQAAAAEAAAAKAAEABQAAAAEAAAAKAAIABQAAAAEAAAALAAAABQAAAAEAAAALAAEABQAAAAEAAAALAAIABQAAAAEAAAAMAAAABQAAAAEAAAAMAAEABQAAAAEAAAAMAAIABQAAAAEAAAANAAAABQAAAAEAAAANAAEABQAAAAEAAAANAAIABQAAAAEAAAAOAAAABQAAAAEAAAAOAAEABQAAAAEAAAAOAAIABQAAAAEAAAABAAMABQAAAAEAAAACAAMABQAAAAEAAAADAAMABQAAAAEAAAAEAAMABQAAAAEAAAAFAAMABQAAAAEAAAAGAAMABQAAAAEAAAAHAAMABQAAAAEAAAAIAAMABQAAAAEAAAAJAAMABQAAAAEAAAAKAAMABQAAAAEAAAALAAMABQAAAAEAAAAMAAMABQAAAAEAAAANAAMABQAAAAEAAAAOAAMABQAAAAEAAAANAAQABQAAAAAAAAAOAAQABQABAAAAAAALAAQABQAAAAAAAAAMAAQABQABAAAAAAAJAAQABQAAAAAAAAAKAAQABQABAAAAAAAHAAQABQAAAAAAAAAIAAQABQABAAAAAAAFAAQABQAAAAAAAAAGAAQABQABAAAAAAADAAQABQAAAAAAAAAEAAQABQABAAAAAAABAAQABQAAAAAAAAACAAQABQABAAAAAAABAAUABQAAAAAAAAACAAUABQABAAAAAAABAAYABQAAAAAAAAACAAYABQABAAAAAAADAAYABQAAAAAAAAAEAAYABQABAAAAAAAFAAYABQAAAAAAAAAGAAYABQABAAAAAAAFAAUABQAAAAAAAAAGAAUABQABAAAAAAAHAAUABQAAAAAAAAAIAAUABQABAAAAAAAJAAUABQAAAAAAAAAKAAUABQABAAAAAAALAAUABQAAAAAAAAAMAAUABQABAAAAAAANAAUABQAAAAAAAAAOAAUABQABAAAAAAANAAYABQAAAAAAAAAOAAYABQABAAAAAAALAAYABQAAAAAAAAAMAAYABQABAAAAAAAJAAYABQAAAAAAAAAKAAYABQABAAAAAAAHAAYABQAAAAAAAAAIAAYABQABAAAAAAADAAUABQAAAAAAAAAEAAUABQABAAAAAAABAAcABQAAAAAAAAACAAcABQABAAAAAAADAAcABQAAAAAAAAAEAAcABQABAAAAAAAFAAcABQAAAAAAAAAGAAcABQABAAAAAAAHAAcABQAAAAAAAAAIAAcABQABAAAAAAAJAAcABQAAAAAAAAAKAAcABQABAAAAAAALAAcABQAAAAAAAAAMAAcABQABAAAAAAANAAcABQAAAAAAAAAOAAcABQABAAAAAAABAAgABQAAAAAAAAACAAgABQABAAAAAAADAAgABQAAAAAAAAAEAAgABQABAAAAAAAFAAgABQAAAAAAAAAGAAgABQABAAAAAAAHAAgABQAAAAAAAAAIAAgABQABAAAAAAAJAAgABQAAAAAAAAAKAAgABQABAAAAAAALAAgABQAAAAAAAAAMAAgABQABAAAAAAANAAgABQAAAAAAAAAOAAgABQABAAAAAAAPAAYABQAAAAAAAAAQAAYABQABAAAAAAA=")
-tile_set = ExtResource("4_4wy5r")
+tile_set = ExtResource("4_wuq1e")
 
 [node name="Clip" type="TileMapLayer" parent="Layers/Background"]
 material = SubResource("CanvasItemMaterial_n6051")
 position = Vector2(0, -8)
 tile_map_data = PackedByteArray("AAAEAAIABQAEAAAAAAALAAIABQAEAAAAAAA=")
-tile_set = ExtResource("4_4wy5r")
+tile_set = ExtResource("4_wuq1e")
 
 [node name="Background2" type="TileMapLayer" parent="Layers"]
 z_index = -4
 position = Vector2(0, -8)
 tile_map_data = PackedByteArray("AAAHAP//AQAAAAIAAAAHAAAAAQAAAAIAAAAIAP//AQABAAIAAAAIAAAAAQABAAIAAAAHAAEAAQAAAAIAAAAIAAEAAQABAAIAAAAHAAIAAQAAAAIAAAAIAAIAAQABAAIAAAACAAQABQAIAAMAAAA=")
-tile_set = ExtResource("4_4wy5r")
+tile_set = ExtResource("4_wuq1e")
 
 [node name="Door" type="Sprite2D" parent="Layers/Background2"]
 visible = false
@@ -259,7 +259,7 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(0, 8)
 tile_map_data = PackedByteArray("AAAEAAEABQACAAAAAAALAAEABQACAAAAAAA=")
-tile_set = ExtResource("4_4wy5r")
+tile_set = ExtResource("4_wuq1e")
 
 [node name="Objects" type="Node2D" parent="Layers"]
 z_as_relative = false
@@ -314,7 +314,7 @@ visibility_layer = 2
 z_as_relative = false
 position = Vector2(-119.875, -92.75)
 tile_map_data = PackedByteArray("AAAHAAUABQAGAAMAAAAGAAUABQAGAAQAAAAIAAUABQAHAAQAAAAGAAQABQAHAAMAAAA=")
-tile_set = ExtResource("4_4wy5r")
+tile_set = ExtResource("4_wuq1e")
 
 [node name="Candle" type="AnimatedSprite2D" parent="Layers/Objects/Table/CanvasGroup"]
 light_mask = 2
