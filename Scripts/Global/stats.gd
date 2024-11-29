@@ -5,11 +5,11 @@ var player_hp = 100
 var player_magic = 100
 var player_fight_spells: Array[BattleSpell] = [preload("res://Assets/Resources/BattleSpells/kaboom.tres")]
 var _new_position: Vector2
+var player = null #set by the player
 
 var inventory: Array[Item]
 var interact_spells: Array
 
-var menu #set by the menu
 var team: int = 0 #1 - Jack Frost, 2 - Snow Queen, 4 - Jethro
 
 func reset():
@@ -64,9 +64,5 @@ func _ready() -> void:		#for testing purposes
 		add_item(boulder)
 #	add_item(preload("res://Assets/Resources/Items/stone.tres"))
 #	add_item(salad.duplicate())
-func open_menu():
-	menu.open()
-func close_menu():
-	menu.close()
 #If you use this in your project, you can add the speed of fighting of an entity
 #(and edit ../Systems/battle.gd), their strength

@@ -1,20 +1,33 @@
 extends Panel
 
 var openable = true
+var menu_open = false
 
 func _ready() -> void:
-	Stats.menu = $"."
+	$"../Back".connect("button_down",close)
 
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		if menu_open:
+			close()
+			menu_open = false
+		else:
+			open()
+			menu_open = true
 
 func open():
 	if not openable:
 		return
 	$"..".visible = true
 	update_inventory()
-	update_allies()
+	update_allies("open")
+	Stats.player.set_physics_process(false)
+	$InvList.grab_focus()
 
 func close():
 	$"..".visible = false
+	update_allies("close")
+	Stats.player.set_physics_process(true)
 
 func update_inventory():
 	$InvList.clear()
@@ -27,7 +40,6 @@ func update_inventory():
 		else:
 			item_list[i.name] = [0,i]
 	for i in item_list:
-		print(item_list[i])
 		
 		if item_list[i][0] == -1:
 			var icon = ImageTexture.create_from_image(Image.load_from_file(item_list[i][1].icon))
@@ -39,5 +51,13 @@ func update_inventory():
 				icon.set_size_override(Vector2i(64,64))
 				$InvList.add_item(i,icon)
 
-func update_allies():
-	pass
+func update_allies(mode):
+	match mode:
+		"close":
+			Stats.player.get_node("HealthBar").visible = false
+			Stats.player.get_node("MagicBar").visible = false
+			Stats.player.get_node("Label").visible = false
+		"open":
+			Stats.player.get_node("HealthBar").visible = true
+			Stats.player.get_node("MagicBar").visible = true
+			Stats.player.get_node("Label").visible = true

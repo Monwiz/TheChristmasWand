@@ -16,6 +16,7 @@ func _ready() -> void:
 	$HealthBar.value = Stats.player_hp
 	if Stats._new_position != Vector2.ZERO:
 		global_position = Stats._new_position
+	Stats.player = $"."
 
 func _physics_process(delta: float) -> void:
 	if skipping_iteration:
@@ -61,14 +62,6 @@ func _physics_process(delta: float) -> void:
 			var collider = ray.get_collider()
 			if collider.has_method("interact"):
 				collider.interact(self)
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		if menu_open:
-			Stats.close_menu()
-			menu_open = false
-		else:
-			Stats.open_menu()
-			menu_open = true
 
 func hurt(val: int) -> void:
 	Stats.player_hp -= val / defense

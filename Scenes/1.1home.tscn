@@ -346,7 +346,7 @@ blend_mode = 1
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(312.25, 152.25)
 script = ExtResource("5_0foww")
-new_scene_location = "res://Scenes/yard.tscn"
+new_scene_location = "res://Scenes/1yard.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 shape = SubResource("RectangleShape2D_xsw0a")
