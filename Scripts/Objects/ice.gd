@@ -8,5 +8,3 @@ func _physics_process(delta: float) -> void:
 			linear_velocity = Vector2.ZERO
 		elif collision.get_collider() is TileMapLayer:
 			linear_velocity = Vector2.ZERO
-		print(typeof(collision.get_collider()))
-	print(linear_velocity)

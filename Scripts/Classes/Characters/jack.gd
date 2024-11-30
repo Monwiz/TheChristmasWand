@@ -5,6 +5,7 @@ func _ready() -> void:
 		if Stats._new_position != Vector2.ZERO:
 			global_position = Stats._new_position
 		follow_team()
+	WorldStats.action.connect(_on_dialogue_returned)
 
 func _on_dialogue_returned(action: String):
 	if action == "jack.follow.team":

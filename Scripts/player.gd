@@ -77,8 +77,19 @@ func _physics_process(delta: float) -> void:
 			else:
 				ray.target_position.x = -12
 				spell_ray.target_position.x = -96
-			
+				
 	move_and_slide()
+			
+	for i in get_slide_collision_count(): #Moving objects, like snow and ice blocks in the puzzles
+		var collision = get_slide_collision(i)
+		var obj = collision.get_collider()
+		if obj is RigidBody2D:
+			obj.apply_central_impulse(-20*collision.get_normal())
+		elif obj is BlockedArea:
+			await obj.update()
+			if not obj.is_queued_for_deletion():
+				velocity = collision.get_normal()
+				obj.interact()
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		if ray.is_colliding():
@@ -86,10 +97,6 @@ func _physics_process(delta: float) -> void:
 			if collider.has_method("interact"):
 				collider.interact(self)
 				
-	for i in get_slide_collision_count(): #Moving objects, like snow and ice blocks in the puzzles
-		var collision = get_slide_collision(i)
-		if collision.get_collider() is RigidBody2D:
-			collision.get_collider().apply_central_impulse(-20*collision.get_normal())
 
 func hurt(val: int) -> void:
 	Stats.player_hp -= val / defense

@@ -1,12 +1,16 @@
-[gd_scene load_steps=32 format=4 uid="uid://bjywvic8b2cu4"]
+[gd_scene load_steps=44 format=4 uid="uid://bjywvic8b2cu4"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_eyqjo"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="2_jhrws"]
 [ext_resource type="Texture2D" uid="uid://c4l31xrcqb8ce" path="res://Assets/Textures/Map/home.png" id="3_15dyl"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="4_oir2a"]
+[ext_resource type="Script" path="res://Scripts/interactive_obj.gd" id="4_p8t72"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="5_0foww"]
 [ext_resource type="PackedScene" uid="uid://cdn8tet00w2je" path="res://Characters/npc.tscn" id="6_ho72p"]
 [ext_resource type="Resource" uid="uid://b0bos5p2faec3" path="res://Assets/Resources/Dialogue/example_dialogue.tres" id="7_r6r0i"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="8_3urlg"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="9_mkv0n"]
+[ext_resource type="Script" path="res://Scripts/blocked_area.gd" id="10_y56v7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_p25p8"]
 vertices = PackedVector2Array(285.953, 51.7188, 288.281, 161.367, 16.6484, 158.109, 15.5938, 51.0234)
@@ -74,20 +78,35 @@ region = Rect2(128, 0, 32, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icdum"]
 size = Vector2(12.25, 13.25)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_302u3"]
+radius = 15.5
+height = 41.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5scu"]
 atlas = ExtResource("3_15dyl")
 region = Rect2(96, 0, 32, 48)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_302u3"]
-radius = 15.5
-height = 41.0
+[sub_resource type="Resource" id="Resource_a8cmb"]
+script = ExtResource("9_mkv0n")
+dialogue_line = [["[*]", "You've taken the map."]]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbpnv"]
+atlas = ExtResource("3_15dyl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gw0r"]
+size = Vector2(26.5, 22)
+
+[sub_resource type="Resource" id="Resource_3gmt5"]
+script = ExtResource("9_mkv0n")
+dialogue_line = [["[*]", "You've taken the wand."]]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bghoy"]
 atlas = ExtResource("3_15dyl")
 region = Rect2(0, 16, 32, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fkv3"]
-size = Vector2(31.75, 11.75)
+size = Vector2(4.375, 11.75)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tt284"]
 closed = false
@@ -161,6 +180,19 @@ _data = {
 "fade-in": SubResource("Animation_vof8y"),
 "fade-out": SubResource("Animation_gshw4")
 }
+
+[sub_resource type="Resource" id="Resource_s7l3g"]
+script = ExtResource("9_mkv0n")
+dialogue_line = [["Mage", "The goblins went away, so it's better to take the map and find out more about what hapened before setting off on the adventure."]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_358xw"]
+
+[sub_resource type="Resource" id="Resource_0qe1j"]
+script = ExtResource("9_mkv0n")
+dialogue_line = [["Mage", "I need to take the map and wand before leaving."]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpp6v"]
+size = Vector2(1.25, 13)
 
 [node name="Scene" type="Node2D"]
 y_sort_enabled = true
@@ -287,7 +319,7 @@ occluder = SubResource("OccluderPolygon2D_jlrou")
 
 [node name="ChristmasTree" type="StaticBody2D" parent="Layers/Objects"]
 y_sort_enabled = true
-position = Vector2(50, 102)
+position = Vector2(268, 112.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/ChristmasTree"]
 y_sort_enabled = true
@@ -300,32 +332,61 @@ shape = SubResource("RectangleShape2D_icdum")
 
 [node name="Table" type="StaticBody2D" parent="Layers/Objects"]
 y_sort_enabled = true
-position = Vector2(264, 88)
-
-[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/Table"]
-y_sort_enabled = true
-texture = SubResource("AtlasTexture_q5scu")
+position = Vector2(43.75, 94.25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Table"]
 position = Vector2(-0.25, 0.75)
 shape = SubResource("CapsuleShape2D_302u3")
 
-[node name="XmasWand" type="Area2D" parent="Layers/Objects/Table"]
+[node name="CanvasGroup" type="CanvasGroup" parent="Layers/Objects/Table"]
+z_as_relative = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/Table/CanvasGroup"]
+y_sort_enabled = true
+texture = SubResource("AtlasTexture_q5scu")
+
+[node name="Map" type="StaticBody2D" parent="Layers/Objects/Table/CanvasGroup"]
+z_as_relative = false
+position = Vector2(-0.25, -10)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
+script = ExtResource("4_p8t72")
+dialogue = SubResource("Resource_a8cmb")
+event_string = "1.1.map"
 
-[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/Table/XmasWand"]
+[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/Table/CanvasGroup/Map"]
+position = Vector2(0.25, -2.75)
+texture = SubResource("AtlasTexture_cbpnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Table/CanvasGroup/Map"]
+position = Vector2(0.25, 1)
+shape = SubResource("RectangleShape2D_4gw0r")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="XmasWand" type="StaticBody2D" parent="Layers/Objects"]
+position = Vector2(281.75, 139.25)
+rotation = -1.5708
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("4_p8t72")
+dialogue = SubResource("Resource_3gmt5")
+event_string = "1.1.wand"
+
+[node name="Sprite2D" type="Sprite2D" parent="Layers/Objects/XmasWand"]
+position = Vector2(-2.5, 0)
+scale = Vector2(1, -1)
 texture = SubResource("AtlasTexture_bghoy")
+offset = Vector2(14, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Table/XmasWand"]
-position = Vector2(-0.375, 2.125)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/XmasWand"]
+position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_1fkv3")
 debug_color = Color(1, 1, 0, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("4_oir2a")]
 light_mask = 0
 y_sort_enabled = true
-position = Vector2(178, 110)
+position = Vector2(264.25, 138.5)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
 z_index = -1
@@ -364,4 +425,24 @@ position = Vector2(86, 55)
 disable_mode = 1
 dialogue = ExtResource("7_r6r0i")
 
+[node name="Event" type="Area2D" parent="."]
+position = Vector2(263.75, 136.75)
+script = ExtResource("8_3urlg")
+dialogue = SubResource("Resource_s7l3g")
+event_string = "1.1.start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+shape = SubResource("RectangleShape2D_358xw")
+
+[node name="BlockExit" type="StaticBody2D" parent="."]
+position = Vector2(295.25, 152.5)
+script = ExtResource("10_y56v7")
+event_conditions = Array[String](["1.1.wand", "1.1.map"])
+dialogue = SubResource("Resource_0qe1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockExit"]
+position = Vector2(6.875, -1)
+shape = SubResource("RectangleShape2D_gpp6v")
+
 [connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]
+[connection signal="body_entered" from="Event" to="Event" method="_on_body_entered"]

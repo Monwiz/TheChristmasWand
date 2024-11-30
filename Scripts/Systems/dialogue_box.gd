@@ -1,3 +1,4 @@
+#I think it'd be better to split this into the usual dialogue script and actions/event script
 extends Panel
 
 var current_dialogue = null
@@ -30,24 +31,40 @@ func next_line():
 		end_dialogue()
 	else:
 		var element = current_dialogue.dialogue_line[current_line]
-		if element is Dictionary:
-			#switches the current dialogue to the picked dialogue
-			$"../Choices".choices(element)
-			$"../Choices".visible = true
-			#$"../../ClickDetection".mouse_filter = MOUSE_FILTER_IGNORE
-			toggle_panel(false)
-		elif element is Array:
-			#passes the data from the dialogue to the labels
-			$Name.text = element[0]
-			$Dialogue.text = element[1]
-			current_line += 1
-		elif element is Fight:
-			toggle_panel(false)
-			$"../../Battle".start_fight(element)
-		else:
-			returned.emit(element)
-			current_line += 1
-			next_line()
+		match typeof(element):
+			TYPE_DICTIONARY:
+				#switches the current dialogue to the picked dialogue
+				$"../Choices".choices(element)
+				$"../Choices".visible = true
+				#$"../../ClickDetection".mouse_filter = MOUSE_FILTER_IGNORE
+				toggle_panel(false)
+			TYPE_ARRAY:
+				#passes the data from the dialogue to the labels
+				$Name.text = element[0]
+				$Dialogue.text = element[1]
+				current_line += 1
+			Fight:
+				toggle_panel(false)
+				$"../../Battle".start_fight(element)
+			TYPE_STRING:
+				var str_split = element.split(".")
+				if str_split[0] == "anim":
+					match str_split[1]:
+						"await":
+							$/root/Scene/AnimationPlayer.play(str_split[2])
+							await $/root/Scene/AnimationPlayer.animation_finished
+						"continue":
+							$/root/Scene/AnimationPlayer.play(str_split[2])
+				else:
+					returned.emit(element)
+					WorldStats.action.emit(element)
+				current_line += 1
+				next_line()
+			_:
+				returned.emit(element)
+				WorldStats.action.emit(element)
+				current_line += 1
+				next_line()
 
 func toggle_panel(toggle):
 	visible = toggle
