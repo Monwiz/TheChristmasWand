@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://2ljh55bcexqq"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/spawner.gd" id="1_pf6yk"]
+[ext_resource type="Texture2D" uid="uid://cg8qbu6xig3ef" path="res://Assets/Textures/Map/puzzle.png" id="1_ue8ir"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2am70"]
+atlas = ExtResource("1_ue8ir")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx1it"]
+atlas = ExtResource("1_ue8ir")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phs4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2am70")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx1it")
+}],
+"loop": false,
+"name": &"disabled",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p51v0"]
+size = Vector2(16, 16)
+
+[node name="Spawner" type="Area2D"]
+z_index = -4
+z_as_relative = false
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_pf6yk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_phs4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p51v0")

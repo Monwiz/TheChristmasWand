@@ -137,7 +137,7 @@ position = Vector2(57.75, 436.25)
 limit_left = 0
 limit_top = 0
 limit_right = 4416
-limit_bottom = 3584
+limit_bottom = 2624
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
@@ -222,17 +222,18 @@ scale = Vector2(0.44495, 0.286667)
 shape = SubResource("RectangleShape2D_1ahha")
 debug_color = Color(0, 0.054902, 1, 0.419608)
 
-[node name="MountainPass" type="Area2D" parent="Layers/TeleportZones"]
+[node name="Puzzles" type="Area2D" parent="Layers/TeleportZones"]
 position = Vector2(817.25, 257.5)
 scale = Vector2(-8.19934, -1.74985)
 script = ExtResource("6_qkn3g")
-new_scene_location = "res://Scenes/8montain_pass.tscn"
+new_scene_location = "res://Scenes/8puzzles.tscn"
+new_position = Vector2(1736, 3520)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/TeleportZones/MountainPass"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/TeleportZones/Puzzles"]
 position = Vector2(-0.0613823, -0.876302)
 scale = Vector2(0.44495, 0.286667)
 shape = SubResource("RectangleShape2D_1ahha")
 debug_color = Color(0, 0.054902, 1, 0.419608)
 
 [connection signal="body_entered" from="Layers/TeleportZones/Trap" to="Layers/TeleportZones/Trap" method="_on_body_entered"]
-[connection signal="body_entered" from="Layers/TeleportZones/MountainPass" to="Layers/TeleportZones/MountainPass" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/TeleportZones/Puzzles" to="Layers/TeleportZones/Puzzles" method="_on_body_entered"]

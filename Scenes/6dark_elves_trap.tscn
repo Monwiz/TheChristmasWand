@@ -138,7 +138,7 @@ position = Vector2(57.75, 436.25)
 limit_left = 0
 limit_top = 0
 limit_right = 4416
-limit_bottom = 3584
+limit_bottom = 2624
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
