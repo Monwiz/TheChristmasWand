@@ -62,6 +62,8 @@ func _ready() -> void:		#for testing purposes
 		add_item(stone)
 		var boulder = load("res://Assets/Resources/Items/boulder.tres")
 		add_item(boulder)
+	interact_spells.append(load("res://Assets/Resources/InteractSpells/create_snow.tres"))
+	interact_spells.append(load("res://Assets/Resources/InteractSpells/create_ice.tres"))
 #	add_item(preload("res://Assets/Resources/Items/stone.tres"))
 #	add_item(salad.duplicate())
 #If you use this in your project, you can add the speed of fighting of an entity

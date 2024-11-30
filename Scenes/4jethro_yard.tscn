@@ -179,7 +179,6 @@ position_smoothing_speed = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 z_as_relative = false
-position = Vector2(-0.25, 7)
 scale = Vector2(0.40625, 0.257812)
 energy = 0.75
 blend_mode = 1
@@ -246,6 +245,8 @@ tile_set = ExtResource("5_0wyt0")
 [node name="Door" type="StaticBody2D" parent="Layers"]
 z_as_relative = false
 position = Vector2(329.006, 358.08)
+collision_layer = 3
+collision_mask = 0
 script = ExtResource("6_eckr7")
 new_scene_location = "res://Scenes/4.1jethro_cabin.tscn"
 

@@ -7,7 +7,7 @@ func _ready() -> void:
 	$"../Back".connect("button_down",close)
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("inventory"):
 		if menu_open:
 			close()
 			menu_open = false

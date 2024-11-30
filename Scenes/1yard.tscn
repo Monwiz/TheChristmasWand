@@ -231,6 +231,8 @@ tile_set = ExtResource("2_bg07b")
 [node name="Door" type="StaticBody2D" parent="Layers/Objects"]
 y_sort_enabled = true
 position = Vector2(243, 134.5)
+collision_layer = 3
+collision_mask = 0
 script = ExtResource("3_m7pca")
 new_scene_location = "res://Scenes/1.1home.tscn"
 new_position = Vector2(1150, 600)
@@ -249,6 +251,8 @@ shape = SubResource("RectangleShape2D_svaoq")
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(222, 132)
+collision_layer = 3
+collision_mask = 0
 script = ExtResource("5_62wqk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Layers/Objects/Mailbox"]
@@ -286,7 +290,7 @@ debug_color = Color(0, 0.054902, 1, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("8_odu1w")]
 y_sort_enabled = true
-position = Vector2(240, 137.75)
+position = Vector2(240, 146)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
@@ -298,7 +302,6 @@ position_smoothing_speed = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 z_as_relative = false
-position = Vector2(-0.25, 7)
 scale = Vector2(0.40625, 0.257812)
 energy = 0.75
 blend_mode = 1

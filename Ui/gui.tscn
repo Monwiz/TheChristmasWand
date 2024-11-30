@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://h3xrvmpf1noe"]
+[gd_scene load_steps=7 format=3 uid="uid://h3xrvmpf1noe"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/menu.gd" id="1_wmuum"]
 [ext_resource type="PackedScene" uid="uid://33dlfcgvy37v" path="res://Ui/battle.tscn" id="1_wrsa7"]
 [ext_resource type="Theme" uid="uid://qagfmr7thawf" path="res://Assets/Other/dialogue.tres" id="2_q21w8"]
 [ext_resource type="Script" path="res://Scripts/Systems/dialogue_box.gd" id="3_7op4r"]
+[ext_resource type="Script" path="res://Scripts/Systems/interactive_spells_menu.gd" id="3_hvgqa"]
 [ext_resource type="Script" path="res://Scripts/choices.gd" id="4_b1t56"]
 
 [node name="Gui" type="CanvasLayer"]
@@ -67,6 +68,34 @@ text = "Back"
 
 [node name="Battle" parent="." instance=ExtResource("1_wrsa7")]
 visible = false
+
+[node name="ChristmasWand" type="Panel" parent="."]
+visible = false
+offset_left = 69.0
+offset_top = 133.0
+offset_right = 355.0
+offset_bottom = 593.0
+script = ExtResource("3_hvgqa")
+
+[node name="Label" type="Label" parent="ChristmasWand"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Select a spell to use"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChristmasWand"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 64.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DialogueRelevant" type="Control" parent="."]
 layout_mode = 3

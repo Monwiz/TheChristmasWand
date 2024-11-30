@@ -146,7 +146,6 @@ position_smoothing_speed = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 z_as_relative = false
-position = Vector2(-0.25, 7)
 scale = Vector2(0.40625, 0.257812)
 energy = 0.75
 blend_mode = 1
@@ -176,6 +175,8 @@ libraries = {
 autoplay = "fade-in"
 
 [node name="Layers" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Ground" type="TileMapLayer" parent="Layers"]
 z_index = -5
@@ -222,7 +223,7 @@ position = Vector2(433.75, 8.5)
 scale = Vector2(9.0461, -1.16323)
 script = ExtResource("10_6kyxu")
 new_scene_location = "res://Scenes/3village.tscn"
-new_position = Vector2(1280, 3520)
+new_position = Vector2(1280, 3500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/TeleportZones/Village"]
 position = Vector2(-12.685, -214.919)

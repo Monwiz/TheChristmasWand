@@ -149,7 +149,6 @@ position_smoothing_speed = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 z_as_relative = false
-position = Vector2(-0.25, 7)
 scale = Vector2(0.40625, 0.257812)
 energy = 0.75
 blend_mode = 1
@@ -213,7 +212,7 @@ tile_set = ExtResource("9_phj8y")
 position = Vector2(909.25, 233.5)
 scale = Vector2(-0.797819, -8.57818)
 script = ExtResource("10_i77fw")
-new_scene_location = "res://Scenes/1yard.tscn"
+new_scene_location = "res://Scenes/7road.tscn"
 new_position = Vector2(3264, 1086)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/TeleportZones/Road3"]

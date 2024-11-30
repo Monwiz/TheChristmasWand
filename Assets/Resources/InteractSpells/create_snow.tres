@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dnbhsj8dhoran"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/Spells/create_snow.gd" id="1_m03dg"]
+
+[resource]
+script = ExtResource("1_m03dg")
+name = "Creating snow blocks"
+description = ""
