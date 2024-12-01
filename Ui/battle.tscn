@@ -1,36 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://33dlfcgvy37v"]
+[gd_scene load_steps=2 format=3 uid="uid://33dlfcgvy37v"]
 
 [ext_resource type="Script" path="res://Scripts/Systems/battle.gd" id="1_syw6b"]
-
-[sub_resource type="Gradient" id="Gradient_uhneg"]
-offsets = PackedFloat32Array(0.626761, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_arwes"]
-gradient = SubResource("Gradient_uhneg")
-fill = 2
-fill_from = Vector2(0.495146, 0.480583)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="Gradient" id="Gradient_pft8t"]
-offsets = PackedFloat32Array(0.626761, 1)
-colors = PackedColorArray(1, 1, 1, 1, 7.70092e-07, 0.746996, 0.843932, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fhdgk"]
-gradient = SubResource("Gradient_pft8t")
-fill = 2
-fill_from = Vector2(0.495146, 0.480583)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="Gradient" id="Gradient_pugux"]
-offsets = PackedFloat32Array(0.626761, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0.799715, 0.30705, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_22rxi"]
-gradient = SubResource("Gradient_pugux")
-fill = 2
-fill_from = Vector2(0.495146, 0.480583)
-fill_to = Vector2(0, 0)
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -41,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_syw6b")
 
-[node name="Attack" type="TextureButton" parent="."]
+[node name="Attack" type="Button" parent="."]
 layout_mode = 0
 offset_left = 74.0
 offset_top = 538.0
@@ -49,13 +19,11 @@ offset_right = 202.0
 offset_bottom = 666.0
 focus_mode = 0
 mouse_filter = 2
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-texture_normal = SubResource("GradientTexture2D_arwes")
-texture_hover = SubResource("GradientTexture2D_fhdgk")
-texture_focused = SubResource("GradientTexture2D_22rxi")
-stretch_mode = 0
+text = "Attack"
 
-[node name="Spell" type="TextureButton" parent="."]
+[node name="Spell" type="Button" parent="."]
 layout_mode = 0
 offset_left = 244.0
 offset_top = 538.0
@@ -63,13 +31,11 @@ offset_right = 372.0
 offset_bottom = 666.0
 focus_mode = 0
 mouse_filter = 2
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-texture_normal = SubResource("GradientTexture2D_arwes")
-texture_hover = SubResource("GradientTexture2D_fhdgk")
-texture_focused = SubResource("GradientTexture2D_22rxi")
-stretch_mode = 0
+text = "Spell"
 
-[node name="Items" type="TextureButton" parent="."]
+[node name="Items" type="Button" parent="."]
 layout_mode = 0
 offset_left = 410.0
 offset_top = 538.0
@@ -77,13 +43,11 @@ offset_right = 538.0
 offset_bottom = 666.0
 focus_mode = 0
 mouse_filter = 2
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-texture_normal = SubResource("GradientTexture2D_arwes")
-texture_hover = SubResource("GradientTexture2D_fhdgk")
-texture_focused = SubResource("GradientTexture2D_22rxi")
-stretch_mode = 0
+text = "Items"
 
-[node name="Defense" type="TextureButton" parent="."]
+[node name="Defense" type="Button" parent="."]
 layout_mode = 0
 offset_left = 578.0
 offset_top = 538.0
@@ -91,13 +55,11 @@ offset_right = 706.0
 offset_bottom = 666.0
 focus_mode = 0
 mouse_filter = 2
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-texture_normal = SubResource("GradientTexture2D_arwes")
-texture_hover = SubResource("GradientTexture2D_fhdgk")
-texture_focused = SubResource("GradientTexture2D_22rxi")
-stretch_mode = 0
+text = "Defense"
 
-[node name="Talk" type="TextureButton" parent="."]
+[node name="Talk" type="Button" parent="."]
 layout_mode = 0
 offset_left = 952.0
 offset_top = 54.0
@@ -105,13 +67,11 @@ offset_right = 1080.0
 offset_bottom = 182.0
 focus_mode = 0
 mouse_filter = 2
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-texture_normal = SubResource("GradientTexture2D_arwes")
-texture_hover = SubResource("GradientTexture2D_fhdgk")
-texture_focused = SubResource("GradientTexture2D_22rxi")
-stretch_mode = 0
+text = "Talk"
 
-[node name="Leave" type="TextureButton" parent="."]
+[node name="Leave" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1092.0
 offset_top = 52.0
@@ -119,11 +79,9 @@ offset_right = 1220.0
 offset_bottom = 180.0
 focus_mode = 0
 mouse_filter = 2
+theme_override_font_sizes/font_size = 26
 action_mode = 0
-texture_normal = SubResource("GradientTexture2D_arwes")
-texture_hover = SubResource("GradientTexture2D_fhdgk")
-texture_focused = SubResource("GradientTexture2D_22rxi")
-stretch_mode = 0
+text = "Leave"
 
 [connection signal="pressed" from="Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Spell" to="." method="_on_spell_pressed"]

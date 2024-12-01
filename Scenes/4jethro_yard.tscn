@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cj0h74q3gvdrq"]
+[gd_scene load_steps=34 format=4 uid="uid://cj0h74q3gvdrq"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_2l88p"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_n1woi"]
@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="5_0wyt0"]
 [ext_resource type="Script" path="res://Scripts/Objects/door.gd" id="6_eckr7"]
 [ext_resource type="Texture2D" uid="uid://viq5hwxc6cxp" path="res://Assets/Textures/Map/buildings.png" id="7_0b0kq"]
+[ext_resource type="AudioStream" uid="uid://c07laq2g4fjsc" path="res://Assets/Audio/Ambient/burning_fire.ogg" id="7_h83bs"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="8_aptus"]
 [ext_resource type="AudioStream" uid="uid://h41t32d2i6po" path="res://Assets/Audio/Music/winter.ogg" id="9_5rxyo"]
 [ext_resource type="Script" path="res://Scripts/blocked_area.gd" id="10_e3j1x"]
@@ -258,6 +259,7 @@ collision_layer = 3
 collision_mask = 0
 script = ExtResource("6_eckr7")
 new_scene_location = "res://Scenes/4.1jethro_cabin.tscn"
+new_music = ExtResource("7_h83bs")
 new_position = Vector2(929, 416)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Layers/Door"]

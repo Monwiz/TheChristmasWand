@@ -414,6 +414,7 @@ blend_mode = 1
 position = Vector2(264.25, 104.25)
 script = ExtResource("3_rviid")
 new_scene_location = "res://Scenes/4jethro_yard.tscn"
+new_music = ExtResource("11_204qj")
 new_position = Vector2(1316, 1464)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]

@@ -549,10 +549,9 @@ func preparing_next_turns():
 	allies[0].set_hover(true)
 
 func death():
-	lose.emit()
-	if dialogue_before_death:
-		dialogue_box.set_dialogue(dialogue_before_death)
-	queue_free()
+	if get_tree():
+		BGM.battle_end()
+		get_tree().reload_current_scene()
 
 func select_goal(entities: Array[CharacterBody2D]):
 	entities[0].set_hover_selected(true)

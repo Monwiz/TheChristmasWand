@@ -3,7 +3,7 @@ extends Node
 const PLAYER_MAX_HP = 100
 var player_hp = 100
 var player_magic = 100
-var player_fight_spells: Array[BattleSpell] = [preload("res://Assets/Resources/BattleSpells/kaboom.tres")]
+var player_fight_spells: Array[BattleSpell]
 var _new_position: Vector2
 var player = null #set by the player
 
@@ -57,11 +57,6 @@ func update_name_stackable(item: Item):
 	item.name = " ".join(name_split)
 		
 func _ready() -> void:		#for testing purposes
-	for n in 5:
-		var stone = load("res://Assets/Resources/Items/stone.tres")
-		add_item(stone)
-		var boulder = load("res://Assets/Resources/Items/boulder.tres")
-		add_item(boulder)
 	interact_spells.append(load("res://Assets/Resources/InteractSpells/create_snow.tres"))
 	interact_spells.append(load("res://Assets/Resources/InteractSpells/create_ice.tres"))
 #	add_item(preload("res://Assets/Resources/Items/stone.tres"))

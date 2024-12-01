@@ -168,6 +168,21 @@ dialogue_line = ["timer.2", ExtResource("14_tb164"), "anim.continue.tp_near_quee
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8ruj"]
 size = Vector2(144.251, 128.497)
 
+[sub_resource type="Animation" id="Animation_7fpd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21.75, 762.25)]
+}
+
 [sub_resource type="Animation" id="Animation_7blu5"]
 resource_name = "tp_near_queen"
 length = 0.001
@@ -182,21 +197,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.138696),
 "update": 0,
 "values": [Vector2(320, 550)]
-}
-
-[sub_resource type="Animation" id="Animation_wjlxe"]
-resource_name = "walking_to_queen"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(320, 475), Vector2(320, 450)]
 }
 
 [sub_resource type="Animation" id="Animation_tft5f"]
@@ -215,8 +215,8 @@ tracks/0/keys = {
 "values": [Vector2(320, 270)]
 }
 
-[sub_resource type="Animation" id="Animation_7fpd4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_wjlxe"]
+resource_name = "walking_to_queen"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -224,10 +224,10 @@ tracks/0/path = NodePath("Player:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(21.75, 762.25)]
+"values": [Vector2(320, 475), Vector2(320, 450)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f0opm"]
@@ -327,7 +327,7 @@ scale = Vector2(-0.0885503, -37.0117)
 script = ExtResource("6_wjcv6")
 new_scene_location = "res://Scenes/9puzzles.tscn"
 new_music = ExtResource("7_606fq")
-new_position = Vector2(2424, 2560)
+new_position = Vector2(2400, 2560)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/TeleportZones/Puzzles"]
 position = Vector2(-1.93298, 0.0520782)

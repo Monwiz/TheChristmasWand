@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://xl2ribguitfd"]
+[gd_scene load_steps=29 format=4 uid="uid://xl2ribguitfd"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_h8075"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_c83cy"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/particles.gd" id="4_n68kg"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="9_phj8y"]
 [ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="10_6m5qf"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="10_b50rs"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="10_i77fw"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="11_eiyof"]
 [ext_resource type="PackedScene" uid="uid://2ljh55bcexqq" path="res://Objects/spawner.tscn" id="11_tnan0"]
 [ext_resource type="PackedScene" uid="uid://cw6oj7rci4mh2" path="res://Objects/button.tscn" id="12_3dg68"]
 [ext_resource type="Script" path="res://Scripts/Objects/barrier.gd" id="13_qitsc"]
@@ -125,6 +127,12 @@ size = Vector2(16, 23.759)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahlv2"]
 size = Vector2(16, 16)
 
+[sub_resource type="Resource" id="Resource_na6iu"]
+script = ExtResource("11_eiyof")
+dialogue_line = [["[*]", "Look at the yellow blocks and use the X button for spawning snow or ice blocks."]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4l8a"]
+
 [node name="Scene" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -226,7 +234,7 @@ position = Vector2(621.75, 482.5)
 scale = Vector2(0.781096, -21.041)
 script = ExtResource("10_i77fw")
 new_scene_location = "res://Scenes/9puzzles.tscn"
-new_position = Vector2(64, 1920)
+new_position = Vector2(80, 1920)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/TeleportZones/Puzzles2"]
 position = Vector2(-1.90735e-06, 0.00821316)
@@ -343,6 +351,15 @@ tile_map_data = PackedByteArray("AAAcACcAAAAFAAAAAAAcACwAAAAFAAEAAAA=")
 enabled = false
 tile_set = ExtResource("9_phj8y")
 
+[node name="Area2D" type="Area2D" parent="Layers/Objects"]
+position = Vector2(431.75, 874)
+script = ExtResource("10_b50rs")
+dialogue = SubResource("Resource_na6iu")
+event_string = "8.start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Area2D"]
+shape = SubResource("RectangleShape2D_s4l8a")
+
 [node name="Obstacles" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
@@ -356,3 +373,4 @@ position = Vector2(-56.994, -59.92)
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/Puzzles2" to="Layers/Objects/TeleportZones/Puzzles2" method="_on_body_entered"]
 [connection signal="pressed" from="Layers/Objects/Puzzle1/Button" to="Layers/Objects/Puzzle1/Barrier" method="_on_button_pressed"]
 [connection signal="released" from="Layers/Objects/Puzzle1/Button" to="Layers/Objects/Puzzle1/Barrier" method="_on_button_released"]
+[connection signal="body_entered" from="Layers/Objects/Area2D" to="Layers/Objects/Area2D" method="_on_body_entered"]

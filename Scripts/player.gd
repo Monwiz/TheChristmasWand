@@ -80,10 +80,10 @@ func _physics_process(delta: float) -> void:
 		if direction_x:
 			velocity.x = direction_x * SPEED
 			if direction_x > 0:
-				ray.target_position.x = 12
+				ray.target_position.x = 24
 				spell_ray.target_position.x = 96
 			else:
-				ray.target_position.x = -12
+				ray.target_position.x = -24
 				spell_ray.target_position.x = -96
 			$AnimatedSprite2D.play()
 				

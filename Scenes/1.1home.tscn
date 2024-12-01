@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://bjywvic8b2cu4"]
+[gd_scene load_steps=58 format=4 uid="uid://bjywvic8b2cu4"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_eyqjo"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="2_jhrws"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/interactive_obj.gd" id="4_p8t72"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="5_0foww"]
 [ext_resource type="Script" path="res://Scripts/event.gd" id="8_3urlg"]
+[ext_resource type="AudioStream" uid="uid://h41t32d2i6po" path="res://Assets/Audio/Music/winter.ogg" id="8_8bfv1"]
 [ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="9_mkv0n"]
 [ext_resource type="Texture2D" uid="uid://c5k18fc1pqx7r" path="res://Assets/Textures/Frame Export/Krampus and Santa Silohuette.jpg" id="9_tstax"]
 [ext_resource type="Texture2D" uid="uid://bvlkbw36eymc5" path="res://Assets/Textures/Frame Export/Krampus and Santa Silohuette 1.5.jpg" id="10_th6ty"]
@@ -104,7 +105,7 @@ atlas = ExtResource("3_15dyl")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gw0r"]
-size = Vector2(26.5, 22)
+size = Vector2(28.75, 34)
 
 [sub_resource type="Resource" id="Resource_3gmt5"]
 script = ExtResource("9_mkv0n")
@@ -115,7 +116,7 @@ atlas = ExtResource("3_15dyl")
 region = Rect2(0, 16, 32, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fkv3"]
-size = Vector2(4.375, 11.75)
+size = Vector2(9.1875, 11.75)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tt284"]
 closed = false
@@ -381,7 +382,7 @@ position = Vector2(0.25, -2.75)
 texture = SubResource("AtlasTexture_cbpnv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Table/CanvasGroup/Map"]
-position = Vector2(0.25, 1)
+position = Vector2(1.375, 7)
 shape = SubResource("RectangleShape2D_4gw0r")
 debug_color = Color(1, 1, 0, 0.419608)
 
@@ -401,7 +402,7 @@ texture = SubResource("AtlasTexture_bghoy")
 offset = Vector2(14, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/XmasWand"]
-position = Vector2(-3, -1)
+position = Vector2(-0.59375, -1)
 shape = SubResource("RectangleShape2D_1fkv3")
 debug_color = Color(1, 1, 0, 0.419608)
 
@@ -429,6 +430,7 @@ blend_mode = 1
 position = Vector2(312.25, 152.25)
 script = ExtResource("5_0foww")
 new_scene_location = "res://Scenes/2village_path.tscn"
+new_music = ExtResource("8_8bfv1")
 new_position = Vector2(1280, 3480)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
