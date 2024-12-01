@@ -105,7 +105,10 @@ func _physics_process(delta: float) -> void:
 			var collider = ray.get_collider()
 			if collider.has_method("interact"):
 				collider.interact(self)
-				
+	
+	if Input.is_action_just_pressed("restart"):
+		if get_tree():
+			get_tree().reload_current_scene()
 
 func hurt(val: int) -> void:
 	Stats.player_hp -= val / defense
