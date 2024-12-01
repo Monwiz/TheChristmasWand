@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BattleProgram" load_steps=2 format=3 uid="uid://dbhl2dnj5opii"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/battle_programme.gd" id="1_k8wrm"]
+
+[resource]
+script = ExtResource("1_k8wrm")
+program = {
+"1.0": [[["Attack", "Skip", "Attack"], ["Attack", "Attack", "Skip"], ["Skip", "Attack", "Skip"], ["Skip", "Attack", "Attack"]]]
+}

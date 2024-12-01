@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=3 uid="uid://cc2gyi6x07ylo"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/Characters/jethro.gd" id="1_f7xmk"]
+[ext_resource type="Texture2D" uid="uid://blgc8s087jl43" path="res://Assets/Textures/Characters/Jethro/Attacking.png" id="2_yp2f8"]
+[ext_resource type="Texture2D" uid="uid://c15hmwb6n1ho4" path="res://Assets/Textures/Characters/Jethro/Walking.png" id="3_tdruy"]
+[ext_resource type="PackedScene" uid="uid://ct02hvakw8ghn" path="res://Ui/bar.tscn" id="4_ut7oo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgaar"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dklgl"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu7dh"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbxmx"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a4rb"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2edkl"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7erm"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoov3"]
+atlas = ExtResource("2_yp2f8")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqdfe"]
+atlas = ExtResource("3_tdruy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgkoy"]
+atlas = ExtResource("3_tdruy")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cqph"]
+atlas = ExtResource("3_tdruy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myvqh"]
+atlas = ExtResource("3_tdruy")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbr5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgaar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dklgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu7dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbxmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a4rb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2edkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7erm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoov3")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqdfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgkoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cqph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myvqh")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvfau"]
+size = Vector2(22, 5.5)
+
+[node name="Jethro" type="CharacterBody2D"]
+script = ExtResource("1_f7xmk")
+strength = 30
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 99
+offset_left = -11.0
+offset_top = -39.0
+offset_right = 77.0
+offset_bottom = -15.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 17
+text = "Jethro"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+position = Vector2(1, -13)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_cbr5g")
+animation = &"walking"
+autoplay = "walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_xvfau")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_ut7oo")]
+visible = false
+offset_top = -32.0
+offset_bottom = -31.0
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+avoidance_enabled = true

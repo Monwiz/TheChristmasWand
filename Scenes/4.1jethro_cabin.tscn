@@ -1,10 +1,18 @@
-[gd_scene load_steps=29 format=4 uid="uid://bn4jsbmkfohdc"]
+[gd_scene load_steps=49 format=4 uid="uid://bn4jsbmkfohdc"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_vtu8o"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_go2ql"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="3_rviid"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="4_wuq1e"]
 [ext_resource type="Texture2D" uid="uid://bb77qvqhjpodv" path="res://Assets/Textures/Map/jethrocabin.png" id="5_n3siw"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="6_td8pn"]
+[ext_resource type="Texture2D" uid="uid://b788k0vlmp00" path="res://Assets/Textures/Frame Export/Mage Walks up to Cabin.jpg" id="7_w5skd"]
+[ext_resource type="Texture2D" uid="uid://dj68oov5ofl0s" path="res://Assets/Textures/Frame Export/Yeti and Mage in Cabin.jpg" id="8_kgsdx"]
+[ext_resource type="Texture2D" uid="uid://tqri154ctbax" path="res://Assets/Textures/Frame Export/Yeti and Mage set off.jpg" id="9_s3q1p"]
+[ext_resource type="Texture2D" uid="uid://wicra7qct2s7" path="res://Assets/Textures/Frame Export/Krampus Lair with Elf.jpg" id="10_i2e1p"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="10_kblr3"]
+[ext_resource type="AudioStream" uid="uid://h41t32d2i6po" path="res://Assets/Audio/Music/winter.ogg" id="11_204qj"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="12_ho176"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k5sqw"]
 vertices = PackedVector2Array(230, 134, 26, 134, 26, 74, 230, 74)
@@ -13,7 +21,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(16, 64, 240, 64, 240, 1
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_abiuw"]
 closed = false
-polygon = PackedVector2Array(-8, 7.5, 7.5, 7.5)
+polygon = PackedVector2Array(-12, 2, 12, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd1qv"]
 size = Vector2(16, 16)
@@ -170,6 +178,200 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.12844, 0.142202)
 
+[sub_resource type="Gradient" id="Gradient_54ppq"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_otjb1"]
+gradient = SubResource("Gradient_54ppq")
+width = 1
+
+[sub_resource type="Resource" id="Resource_w6r3q"]
+script = ExtResource("10_kblr3")
+dialogue_line = [ExtResource("7_w5skd"), ["Mage", "[i]I arrived late and met Jethro at his little cabin outside the village.[/i]"], ExtResource("8_kgsdx"), ["Mage", "[i]I sensed, despite the yeti’s smile and politeness, there was a quiet sadness behind the eyes. Though he was taller than me and many of the yetis I had seen, he did even compare to the lesser warriors of old. Many of whom measured over 10 feet in stature.[/i]"], "pic.hide", "jethro.walking", "anim.await.setting_table1", "jethro.staying_still", "anim.await.setting_table2", "jethro.walking", "anim.await.setting_table3", "jethro.staying_still", ["Mage", "[i]Jethro was prepared, as a pigeon had been sent. Undoubtedly his preparations were guided by his decades of hunting and scouting.[/i]"], ["Jethro", "Eat and rest tonight, you best be prepared for tomorrow."], "anim.await.fade_out", "jethro.follow.team", ExtResource("9_s3q1p"), ["Mage", "[i]Bright and early we rose, I wore a special robe intended to protect me from the extreme cold. Even so, there were many perils. I watched as Jethro places arrows into a quiver, knowing that this preparation was from a justified caution.[/i]"], ["Jethro", "It's about a two days journey if we are careful and can avoid an ambush."], ["Mage", "[i]I saw for a moment the sadness pass, replaced by a steely determination that echoes a thousand warriors' strength. But alas the moment passed and the dull melancholic glow returned.[/i]"], SubResource("GradientTexture1D_otjb1"), "anim.await.fade_out", ExtResource("10_i2e1p"), ["Dark Elf", "Lord Krampus, the wizards have sent a mage to recover the wand Piece."], ["Krampus", "It's a fools errand, any numbers of mages would not have a hope to defeat Us."], ["Dark Elf", "Should I go and try my might agains this? Been a while since I faced a mage in battle."], ["Krampus", "It might even be a kindness, poor hapless fellow still has a long journey to meet his doom."], "anim.await.tp_to_road"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um7p8"]
+size = Vector2(12, 12)
+
+[sub_resource type="Animation" id="Animation_tv1ja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(236, 101)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jethro:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128.125, 89.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Layers/Background2/Door:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Layers/Objects/Table/CanvasGroup/Food:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6sbqy"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ntg8y"]
+resource_name = "setting_table1"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 136), Vector2(128, 136)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jethro:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128.125, 89.5), Vector2(40, 76)]
+}
+
+[sub_resource type="Animation" id="Animation_3wg1d"]
+resource_name = "setting_table2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Layers/Background2/Door:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_y7cjg"]
+resource_name = "setting_table3"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jethro:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(40, 76), Vector2(128.125, 89.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Layers/Objects/Table/CanvasGroup/Food:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_kd11r"]
+resource_name = "tp_to_road"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, -64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6mcba"]
+_data = {
+"RESET": SubResource("Animation_tv1ja"),
+"fade_out": SubResource("Animation_6sbqy"),
+"setting_table1": SubResource("Animation_ntg8y"),
+"setting_table2": SubResource("Animation_3wg1d"),
+"setting_table3": SubResource("Animation_y7cjg"),
+"tp_to_road": SubResource("Animation_kd11r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qskl8"]
+size = Vector2(16, 23.759)
+
 [node name="Scene" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -189,8 +391,7 @@ polygon = PackedVector2Array(16, 64, 16, 144, 240, 144, 240, 112, 272, 112, 272,
 
 [node name="Player" parent="." instance=ExtResource("2_go2ql")]
 light_mask = 0
-y_sort_enabled = true
-position = Vector2(246.25, 101)
+position = Vector2(236, 101)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
 z_index = -1
@@ -309,6 +510,7 @@ texture = SubResource("AtlasTexture_ktppk")
 offset = Vector2(0, -8)
 
 [node name="Food" type="TileMapLayer" parent="Layers/Objects/Table/CanvasGroup"]
+visible = false
 light_mask = 2
 visibility_layer = 2
 z_as_relative = false
@@ -333,4 +535,39 @@ shadow_enabled = true
 shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_qr2ru")
 
+[node name="Event" type="Area2D" parent="Layers"]
+position = Vector2(248, 104)
+script = ExtResource("6_td8pn")
+dialogue = SubResource("Resource_w6r3q")
+event_string = "4.1.start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Event"]
+position = Vector2(-4, 0.25)
+shape = SubResource("RectangleShape2D_um7p8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6mcba")
+}
+autoplay = "RESET"
+
+[node name="Road" type="Area2D" parent="."]
+position = Vector2(68.7501, -68.574)
+scale = Vector2(-0.797819, -8.57818)
+script = ExtResource("3_rviid")
+new_scene_location = "res://Scenes/5road.tscn"
+new_music = ExtResource("11_204qj")
+new_position = Vector2(1280, 3522)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Road"]
+position = Vector2(-14.5529, -0.947037)
+scale = Vector2(-2.78017, -0.0304656)
+shape = SubResource("RectangleShape2D_qskl8")
+debug_color = Color(0, 0.054902, 1, 0.419608)
+
+[node name="Jethro" parent="." instance=ExtResource("12_ho176")]
+position = Vector2(128.125, 89.5)
+
 [connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Event" to="Layers/Event" method="_on_body_entered"]
+[connection signal="body_entered" from="Road" to="Road" method="_on_body_entered"]

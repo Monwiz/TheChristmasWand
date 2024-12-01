@@ -2,12 +2,16 @@ extends Control
 
 #input variables
 var allies: Array[CharacterBody2D]
+var allies_prev_pos: Array[Vector2]
 var enemies: Array[CharacterBody2D]
+var enemies_prev_pos: Array[Vector2]
 var battle_program: Dictionary
 @onready var dialogue_box = get_parent().get_node("DialogueRelevant/DialogueBox")
 var talking_dialogue: Dialogue
 var failed_leaving_dialogue: Dialogue
 var dialogue_before_death: Dialogue
+var won_dialogue: Dialogue
+var post_fight_dialogue: Dialogue
 var can_leave: bool
 var leaving_chances: float
 
@@ -50,22 +54,39 @@ func start_fight(fight: Fight) -> void:
 	talking_dialogue = fight.talking_dialogue
 	failed_leaving_dialogue = fight.failed_leaving_dialogue
 	dialogue_before_death = fight.dialogue_before_death
+	won_dialogue = fight.won_dialogue
+	post_fight_dialogue = fight.post_fight_dialogue
 	can_leave = fight.can_leave
 	leaving_chances = fight.leaving_chances
 	
+	$"/root/Scene/Gui/ChristmasWand".set_physics_process(false)
+	$"/root/Scene/Gui/Menu/Inventory".set_physics_process(false)
+	Stats.player.velocity = Vector2.ZERO
+	Stats.player.get_node("Camera2D").position_smoothing_speed = 0
+	
+	var i = 0
 	for allie in allies:
 		allie.process_mode = Node.PROCESS_MODE_DISABLED
 		allie.get_node("HealthBar").visible = true
 		var magic_bar = allie.get_node_or_null("MagicBar")
 		if magic_bar:
 			magic_bar.visible = true
-		#save allies' positions
+		allies_prev_pos.append(allie.global_position)
+		var cam = Stats.player.get_node("Camera2D")
+		allie.global_position.x = cam.get_screen_center_position().x - 256
+		allie.global_position.y = cam.get_screen_center_position().y - 96 + i*64
 		#slowly move allies to their positions
+		i += 1
+	i = 0
 	for enemy in enemies:
 		enemies_total_max_xp += enemy.get_hp()
 		enemy.get_node("HealthBar").visible = true
-		#save enemies' positions
+		enemies_prev_pos.append(enemy.global_position)
+		var cam = Stats.player.get_node("Camera2D")
+		enemy.global_position.x = cam.get_screen_center_position().x + 256
+		enemy.global_position.y = cam.get_screen_center_position().y - 96 + i*64
 		#slowly move enemies to their positions
+		i += 1
 		
 	#animation
 	visible = true
@@ -85,24 +106,39 @@ func start_fight(fight: Fight) -> void:
 	decide()
 
 func end_fight(state: int):
-	#Stats.menu.openable = true
+	finished.emit(state)
 	set_physics_process(false)
+	if state == 1:
+		if won_dialogue:
+			dialogue_box.set_dialogue(won_dialogue)
+			await dialogue_box.finished
+			
+	#Stats.menu.openable = true
+	Stats.player.get_node("Camera2D").position_smoothing_speed = 2
+	var i = 0
 	for allie in allies:
 		allie.process_mode = Node.PROCESS_MODE_INHERIT
 		allie.get_node("HealthBar").visible = false
 		var magic_bar = allie.get_node_or_null("MagicBar")
 		if magic_bar:
 			magic_bar.visible = false
-		#move allies back to their previous positions
+		allie.global_position = allies_prev_pos[i]
+		i += 1
 	for enemy in enemies:
-		enemy.get_node("HealthBar").visible = false
-		#move enemies back to their previous positions
+		enemy.queue_free()
 	
 	#animation
 	visible = false
 	BGM.battle_end()
 	#animation
-	finished.emit(state)
+	if post_fight_dialogue:
+		if dialogue_box.visible:
+			await dialogue_box.finished
+		dialogue_box.set_dialogue(post_fight_dialogue)
+		await dialogue_box.finished
+	else:
+		$"/root/Scene/Gui/ChristmasWand".set_physics_process(true)
+		$"/root/Scene/Gui/Menu/Inventory".set_physics_process(true)
 
 func _physics_process(delta: float) -> void:
 	if goals:
@@ -131,21 +167,27 @@ func _physics_process(delta: float) -> void:
 			if len(choice) > 1:
 				dialogue_box.end_dialogue()
 				#dialogue_box.returned.emit(null)
+				"""
 			else:
 				if character_turn > 0:
 					strategy.pop_back()
 					allies[character_turn].set_hover(false)
-					character_turn -= 1
+					var new_turn = character_turn
+					while new_turn > 0:
+						new_turn -= 1
+						if allies[new_turn].get_hp() != 0:
+							character_turn = new_turn
 					allies[character_turn].set_hover(true)
 					decide()
 				else:
 					strategy = [[]]
-	if ended and Input.is_action_just_pressed("ui_accept"):
-		#animation
-		visible = false
-		set_physics_process(false)
-		for allie in allies:
-			allie.process_mode = Node.PROCESS_MODE_INHERIT
+				"""
+	#if ended and Input.is_action_just_pressed("ui_accept"):
+	#	#animation
+	#	visible = false
+	#	set_physics_process(false)
+	#	for allie in allies:
+	#		allie.process_mode = Node.PROCESS_MODE_INHERIT
 	is_ignoring_input = false
 	if allies.all(func(allie): return allie.get_hp() <= 0):
 		await signal_dialogue_or_animation
@@ -170,10 +212,14 @@ func decide() -> void:
 	var allie = allies[character_turn]
 	match len(choice):
 		0: #The first choice: Attack, Spell, Item, Defend
-			toggle_buttons(true)
-			await action_selected
-			toggle_buttons(false)
-			decide()
+			if allie.get_hp() <= 0:
+				strategy[character_turn].append("Dead")
+				next_character()
+			else:
+				toggle_buttons(true)
+				await action_selected
+				toggle_buttons(false)
+				decide()
 		1: #The second choice
 			var options: Dictionary
 			match choice[0]:
@@ -327,6 +373,7 @@ func decide() -> void:
 func fight() -> void:
 	is_fighting = true
 	await allies_turn()		#avoid multithread, idk why is this a thing in godot
+	if ended: return
 	await enemies_turn()
 	await preparing_next_turns()
 	decide()
@@ -336,12 +383,14 @@ func allies_turn():
 		var dialogue = Dialogue.new()
 		var allie = allies[character_turn]
 		match allie_choice[0]:
+			"Dead":
+				character_turn += 1
+				continue
 			"Attack":
 				allie.attack(allie_choice[1], strength_multiplyer)
 				
 				dialogue.dialogue_line = [["[Battle]", allie.name+" attacked "+allie_choice[1].name+"."]]
 				dialogue_box.set_dialogue(dialogue)
-				#animation
 			"Spell":
 				allie_choice[1].use_on(allie_choice[2])
 				
@@ -382,6 +431,12 @@ func allies_turn():
 		
 		for enemy in enemies: #updating the enemies battle program
 			enemies_total_current_xp += enemy.get_hp()
+			
+		if enemies_total_current_xp <= 0:
+			await end_fight(1)
+			ended = true
+			return
+		
 		var hp_collection = battle_program.keys()
 		if i_battle_program+1 < hp_collection.size():
 			if float(hp_collection[i_battle_program+1]) > enemies_total_current_xp / enemies_total_max_xp:
@@ -395,11 +450,16 @@ func allies_turn():
 					await dialogue_box.finished
 		
 	character_turn = 0
+	enemies_total_current_xp = 0
 	
 func enemies_turn():
 	while character_turn < len(enemies):
-		var element = current_battle_program[i_current_program][character_turn][i_current_actions]
 		var enemy = enemies[character_turn]
+		if enemy.get_hp() <= 0:
+			character_turn += 1
+			continue
+		
+		var element = current_battle_program[i_current_program][character_turn][i_current_actions]
 		var dialogue = Dialogue.new()
 		if element is BattleSpell:
 				var line_end: String
@@ -470,7 +530,8 @@ func enemies_turn():
 	character_turn = 0
 	
 func preparing_next_turns():
-	if i_current_actions+1 < current_battle_program[i_current_program].size():
+	print(current_battle_program[i_current_program][0].size())
+	if i_current_actions+1 < current_battle_program[i_current_program][0].size():
 		i_current_actions += 1
 	elif i_current_program+1 < current_battle_program.size():
 		i_current_program += 1
@@ -494,7 +555,7 @@ func death():
 	queue_free()
 
 func select_goal(entities: Array[CharacterBody2D]):
-	allies[0].set_hover_selected(true)
+	entities[0].set_hover_selected(true)
 	goals = entities
 	is_ignoring_input = true
 
@@ -507,6 +568,7 @@ func set_strength_multiplyer(val: float):
 
 
 func toggle_buttons(val: bool):
+	$Spell.disabled = false
 	if val:
 		$Attack.focus_mode = FocusMode.FOCUS_ALL
 		$Spell.focus_mode = FocusMode.FOCUS_ALL
@@ -522,6 +584,10 @@ func toggle_buttons(val: bool):
 		$Defense.focus_mode = FocusMode.FOCUS_NONE
 		$Talk.focus_mode = FocusMode.FOCUS_NONE
 		$Leave.focus_mode = FocusMode.FOCUS_NONE
+		
+	if character_turn != 0:
+		$Spell.focus_mode = FocusMode.FOCUS_NONE
+		$Spell.disabled = true
 
 func _on_attack_pressed() -> void:
 	strategy[character_turn].append("Attack")
@@ -597,7 +663,7 @@ signal signal_dialogue_or_animation()	#wait for one of the two signals
 func await_dialogue_or_animation():#anim: AnimationPlayer):
 	var finished: int
 	dialogue_box.finished.connect(signal_dialogue_or_animation.emit)
-	var timer = get_tree().create_timer(3).timeout
+	var timer = get_tree().create_timer(2).timeout
 	timer.connect(signal_dialogue_or_animation.emit) #replace with anim.animation_finished
 	
 	await signal_dialogue_or_animation

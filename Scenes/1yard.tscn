@@ -1,15 +1,18 @@
-[gd_scene load_steps=32 format=4 uid="uid://bc3lg1v47ho8t"]
+[gd_scene load_steps=42 format=4 uid="uid://bc3lg1v47ho8t"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_vvl0r"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="2_bg07b"]
 [ext_resource type="Script" path="res://Scripts/Objects/door.gd" id="3_m7pca"]
 [ext_resource type="Texture2D" uid="uid://viq5hwxc6cxp" path="res://Assets/Textures/Map/buildings.png" id="4_7fg07"]
 [ext_resource type="Script" path="res://Scripts/Objects/player_mailbox.gd" id="5_62wqk"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="5_i2xky"]
 [ext_resource type="Texture2D" uid="uid://nw1brc8x8g6c" path="res://Assets/Textures/Map/street.png" id="6_4iipf"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="6_18w06"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="7_mkf73"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="8_odu1w"]
 [ext_resource type="Texture2D" uid="uid://c6s8nybq1rp7i" path="res://Assets/Textures/snow.png" id="9_khmcf"]
 [ext_resource type="Script" path="res://Scripts/particles.gd" id="10_c5eta"]
+[ext_resource type="Script" path="res://Scripts/blocked_area.gd" id="10_ygo5e"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_q7go8"]
 vertices = PackedVector2Array(787.961, 325.727, -51.7891, 324.258, -53.2031, -19.0078, 786.781, -20.4766)
@@ -46,6 +49,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svaoq"]
 size = Vector2(21.25, 5.75)
 
+[sub_resource type="Resource" id="Resource_a1h08"]
+script = ExtResource("6_18w06")
+dialogue_line = [["Mage", "Now I was making my way to the frozen north and through the icy perils to the lair of Krampus."], ["Mage", "I knew I was hopelessly tempting fate to recover the Christmas wand."]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2s3xb"]
+size = Vector2(20, 11.25)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ngls"]
 atlas = ExtResource("6_4iipf")
 region = Rect2(16, 48, 16, 32)
@@ -78,6 +88,24 @@ size = Vector2(8, 8.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gndae"]
 size = Vector2(16, 16)
+
+[sub_resource type="Resource" id="Resource_jxypt"]
+script = ExtResource("6_18w06")
+dialogue_line = [["[Devs]", "The location is not available, but will be added later."]]
+
+[sub_resource type="Resource" id="Resource_ex36x"]
+script = ExtResource("6_18w06")
+dialogue_line = [["Mage", "Our school located there, but it was closed because of the goblins."]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3oom"]
+size = Vector2(318.5, 159.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsyw0"]
+size = Vector2(30.25, 76)
+
+[sub_resource type="Resource" id="Resource_rtjm6"]
+script = ExtResource("6_18w06")
+dialogue_line = [["Mage", "I must recover the Christmas wand!"]]
 
 [sub_resource type="Gradient" id="Gradient_4w3vn"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -247,6 +275,16 @@ autoplay = "closed"
 position = Vector2(-0.625, 0.125)
 shape = SubResource("RectangleShape2D_svaoq")
 
+[node name="Area2D" type="Area2D" parent="Layers/Objects/Door"]
+position = Vector2(-1, 15)
+script = ExtResource("5_i2xky")
+dialogue = SubResource("Resource_a1h08")
+event_string = "1.exited"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/Door/Area2D"]
+position = Vector2(0, -4.375)
+shape = SubResource("RectangleShape2D_2s3xb")
+
 [node name="Mailbox" type="StaticBody2D" parent="Layers/Objects"]
 z_as_relative = false
 y_sort_enabled = true
@@ -288,8 +326,35 @@ new_position = Vector2(1280, 3480)
 shape = SubResource("RectangleShape2D_gndae")
 debug_color = Color(0, 0.054902, 1, 0.419608)
 
+[node name="BlockedAreaSchool" type="StaticBody2D" parent="Layers/Objects"]
+position = Vector2(480.25, 221.75)
+script = ExtResource("10_ygo5e")
+dialogue = SubResource("Resource_jxypt")
+
+[node name="SchoolEvent" type="Area2D" parent="Layers/Objects/BlockedAreaSchool"]
+position = Vector2(0, 1)
+script = ExtResource("5_i2xky")
+dialogue = SubResource("Resource_ex36x")
+event_string = "1.school"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/BlockedAreaSchool/SchoolEvent"]
+position = Vector2(149.25, 32.625)
+shape = SubResource("RectangleShape2D_x3oom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/BlockedAreaSchool"]
+position = Vector2(305.875, 8.75)
+shape = SubResource("RectangleShape2D_dsyw0")
+
+[node name="BlockedAreaHouses" type="StaticBody2D" parent="Layers/Objects"]
+position = Vector2(-289.25, 214.25)
+script = ExtResource("10_ygo5e")
+dialogue = SubResource("Resource_rtjm6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/BlockedAreaHouses"]
+position = Vector2(305.875, 8.75)
+shape = SubResource("RectangleShape2D_dsyw0")
+
 [node name="Player" parent="." instance=ExtResource("8_odu1w")]
-y_sort_enabled = true
 position = Vector2(240, 146)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -330,5 +395,7 @@ texture = ExtResource("9_khmcf")
 lifetime = 5.0
 script = ExtResource("10_c5eta")
 
+[connection signal="body_entered" from="Layers/Objects/Door/Area2D" to="Layers/Objects/Door/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/School" to="Layers/Objects/TeleportZones/School" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/VillagePath" to="Layers/Objects/TeleportZones/VillagePath" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Objects/BlockedAreaSchool/SchoolEvent" to="Layers/Objects/BlockedAreaSchool/SchoolEvent" method="_on_body_entered"]

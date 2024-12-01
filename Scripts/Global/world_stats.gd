@@ -1,6 +1,6 @@
 extends Node
 
-signal action(action: String)
+signal action(action)
 ## Settings
 var ParticledEnabled = true
 

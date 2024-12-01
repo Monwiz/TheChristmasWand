@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Fight" load_steps=8 format=3 uid="uid://bo1ulecchixa6"]
+
+[ext_resource type="Resource" uid="uid://caniutuanydbw" path="res://Assets/Resources/Battle Programmes/dark_elf.tres" id="1_cr3q2"]
+[ext_resource type="AudioStream" uid="uid://cosnue5urr2pq" path="res://Assets/Audio/Music/battle.ogg" id="1_p3by1"]
+[ext_resource type="Texture2D" uid="uid://wicra7qct2s7" path="res://Assets/Textures/Frame Export/Krampus Lair with Elf.jpg" id="2_oubrx"]
+[ext_resource type="AudioStream" uid="uid://dbjt1nv74y6e1" path="res://Assets/Audio/Music/battle_intro.ogg" id="2_rr81l"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="3_mmqdn"]
+[ext_resource type="Script" path="res://Scripts/Classes/fight.gd" id="3_u53bt"]
+
+[sub_resource type="Resource" id="Resource_gbqkj"]
+script = ExtResource("3_mmqdn")
+dialogue_line = [["Dark Elf", "Fools, I am just one of many obstacles till your defeat at Krampus hand. There can be no victory."], ExtResource("2_oubrx"), ["Mage", "[i]Krampus had received word of his dark elves' defeat. He knew he needed to muster more strength. Krampus did not yet possess the complete power of the wand, but he needed to act before the season ended.[/i]"], ["Mage", "[i]He drew all of his power and used the half-wand to summon every dark creature. Goblins, trolls, gnomes, and the like swarmed to places of his calling. He then drew his attention to the mass graves from the last great yeti battle, he called them to rise. From their hidden resting places, dark yetis with glowing eyes answered.[/i]"], ["Mage", "[i]The creatures started to subjugate the villages and turn them into strongholds. If he could not take the power of Christmas by trickery, he would take it by force. He learns, to his cruel amazement, that one of the party was a yeti.[/i]"]]
+
+[resource]
+script = ExtResource("3_u53bt")
+allies_paths = Array[NodePath]([NodePath("Player"), NodePath("Jethro")])
+enemies_paths = Array[NodePath]([NodePath("DarkElf")])
+premusic = ExtResource("2_rr81l")
+music = ExtResource("1_p3by1")
+battle_program = ExtResource("1_cr3q2")
+can_leave = false
+leaving_chances = 0.75
+post_fight_dialogue = SubResource("Resource_gbqkj")

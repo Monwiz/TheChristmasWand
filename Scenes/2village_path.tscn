@@ -1,11 +1,15 @@
-[gd_scene load_steps=21 format=4 uid="uid://cn56s60pjsgeo"]
+[gd_scene load_steps=26 format=4 uid="uid://cn56s60pjsgeo"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_708bi"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_l3417"]
 [ext_resource type="Texture2D" uid="uid://c6s8nybq1rp7i" path="res://Assets/Textures/snow.png" id="3_yoxcm"]
 [ext_resource type="Script" path="res://Scripts/particles.gd" id="4_bibc7"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="7_ug4ul"]
+[ext_resource type="Texture2D" uid="uid://ds47luylrd45e" path="res://Assets/Textures/Frame Export/Mage goes to the North.jpg" id="8_3bre5"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="8_oaqr6"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="9_0l8t1"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="10_6kyxu"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="10_q60rk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wfnku"]
 vertices = PackedVector2Array(611.5, 889.898, 12.7188, 884.094, 11.2734, 268.719, 611.5, 267.273)
@@ -115,11 +119,15 @@ _data = {
 "fade-out": SubResource("Animation_e4t4o")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6g7g"]
-size = Vector2(16, 23.759)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nouir"]
 size = Vector2(16, 16)
+
+[sub_resource type="Resource" id="Resource_0vb2r"]
+script = ExtResource("8_oaqr6")
+dialogue_line = [ExtResource("8_3bre5"), ["Mage", "[i]Now I was making my way to the frozen north and through the icy perils to the lair of Krampus. Iknew I was hopelessly tempting fate to recover the Christmas wand.[/i]"], "pic.hide", ["Mage", "[i]I arrived in the north facing toward Krampus's domain. My first stop was at a yeti village where I was to meet a yeti named Jethro.[/i]"]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7b46"]
+size = Vector2(20, 37.4844)
 
 [node name="Scene" type="Node2D"]
 z_as_relative = false
@@ -133,7 +141,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_wfnku")
 
 [node name="Player" parent="." instance=ExtResource("2_l3417")]
-y_sort_enabled = true
 position = Vector2(319.75, 860.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -205,19 +212,6 @@ tile_set = ExtResource("9_0l8t1")
 
 [node name="TeleportZones" type="Node2D" parent="Layers/Objects"]
 
-[node name="Yard" type="Area2D" parent="Layers/Objects/TeleportZones"]
-position = Vector2(795.25, 235.5)
-scale = Vector2(-0.797819, -8.57818)
-script = ExtResource("10_6kyxu")
-new_scene_location = "res://Scenes/1yard.tscn"
-new_position = Vector2(1723, 110)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/TeleportZones/Yard"]
-position = Vector2(595.686, -76.648)
-scale = Vector2(3.48792, 0.0425347)
-shape = SubResource("RectangleShape2D_h6g7g")
-debug_color = Color(0, 0.054902, 1, 0.419608)
-
 [node name="Village" type="Area2D" parent="Layers/Objects/TeleportZones"]
 position = Vector2(433.75, 8.5)
 scale = Vector2(9.0461, -1.16323)
@@ -231,11 +225,24 @@ scale = Vector2(0.313279, 0.283638)
 shape = SubResource("RectangleShape2D_nouir")
 debug_color = Color(0, 0.054902, 1, 0.419608)
 
+[node name="Event" type="Area2D" parent="Layers"]
+position = Vector2(320, 878)
+script = ExtResource("7_ug4ul")
+dialogue = SubResource("Resource_0vb2r")
+event_string = "2.start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Event"]
+position = Vector2(0, -8.74219)
+shape = SubResource("RectangleShape2D_j7b46")
+
 [node name="Obstacles" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
 build_mode = 1
 polygon = PackedVector2Array(0, 896, 0, 256, 624, 256, 624, 896)
 
-[connection signal="body_entered" from="Layers/Objects/TeleportZones/Yard" to="Layers/Objects/TeleportZones/Yard" method="_on_body_entered"]
+[node name="Jethro" parent="." instance=ExtResource("10_q60rk")]
+position = Vector2(-58.994, 196.08)
+
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/Village" to="Layers/Objects/TeleportZones/Village" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Event" to="Layers/Event" method="_on_body_entered"]

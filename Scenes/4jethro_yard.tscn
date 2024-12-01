@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://cj0h74q3gvdrq"]
+[gd_scene load_steps=33 format=4 uid="uid://cj0h74q3gvdrq"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_2l88p"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_n1woi"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://viq5hwxc6cxp" path="res://Assets/Textures/Map/buildings.png" id="7_0b0kq"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="8_aptus"]
 [ext_resource type="AudioStream" uid="uid://h41t32d2i6po" path="res://Assets/Audio/Music/winter.ogg" id="9_5rxyo"]
+[ext_resource type="Script" path="res://Scripts/blocked_area.gd" id="10_e3j1x"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="11_0ou33"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="12_jw1na"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v4iqn"]
 vertices = PackedVector2Array(628, 249.961, 628, 500, 10, 500, 10, 248.031)
@@ -154,6 +157,13 @@ size = Vector2(16, 23.759)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fl1nn"]
 size = Vector2(16, 16)
 
+[sub_resource type="Resource" id="Resource_gswmt"]
+script = ExtResource("11_0ou33")
+dialogue_line = [["Mage", "I should meet Jethro before I go further."]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8re0"]
+size = Vector2(64, 20)
+
 [node name="Scene" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -166,8 +176,7 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_v4iqn")
 
 [node name="Player" parent="." instance=ExtResource("2_n1woi")]
-y_sort_enabled = true
-position = Vector2(31.75, 396.25)
+position = Vector2(19.75, 418.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
@@ -244,20 +253,21 @@ tile_set = ExtResource("5_0wyt0")
 
 [node name="Door" type="StaticBody2D" parent="Layers"]
 z_as_relative = false
-position = Vector2(329.006, 358.08)
+position = Vector2(329.006, 360.08)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("6_eckr7")
 new_scene_location = "res://Scenes/4.1jethro_cabin.tscn"
+new_position = Vector2(929, 416)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Layers/Door"]
-position = Vector2(-0.625, -18)
+position = Vector2(-0.625, -20)
 sprite_frames = SubResource("SpriteFrames_a17ki")
 animation = &"closed"
 autoplay = "closed"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Door"]
-position = Vector2(-0.625, 0.125)
+position = Vector2(-0.625, -1.875)
 shape = SubResource("RectangleShape2D_7kdmw")
 
 [node name="TeleportZones" type="Node2D" parent="Layers"]
@@ -288,6 +298,18 @@ position = Vector2(-0.303998, -1.52588e-05)
 scale = Vector2(0.0748221, 2.25279)
 shape = SubResource("RectangleShape2D_fl1nn")
 debug_color = Color(0, 0.054902, 1, 0.419608)
+
+[node name="BlockedArea" type="StaticBody2D" parent="Layers"]
+position = Vector2(543.9, 248)
+script = ExtResource("10_e3j1x")
+event_conditions = Array[String](["4.1.start"])
+dialogue = SubResource("Resource_gswmt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/BlockedArea"]
+shape = SubResource("RectangleShape2D_r8re0")
+
+[node name="Jethro" parent="." instance=ExtResource("12_jw1na")]
+position = Vector2(-58.994, 196.08)
 
 [connection signal="body_entered" from="Layers/TeleportZones/Road" to="Layers/TeleportZones/Road" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/TeleportZones/Village" to="Layers/TeleportZones/Village" method="_on_body_entered"]

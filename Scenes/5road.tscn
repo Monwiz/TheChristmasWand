@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bfttqljr1kca3"]
+[gd_scene load_steps=22 format=4 uid="uid://bfttqljr1kca3"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_gmqiy"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_ynewp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/particles.gd" id="4_wc1hq"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="5_j1jcq"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="6_y157s"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="7_i7077"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ecc1m"]
 vertices = PackedVector2Array(1092, 884, 12.7266, 884, 11.2734, 268.719, 1092, 266.023)
@@ -132,7 +133,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_ecc1m")
 
 [node name="Player" parent="." instance=ExtResource("2_ynewp")]
-y_sort_enabled = true
 position = Vector2(319.75, 860.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -215,7 +215,7 @@ position = Vector2(1097.25, 481.5)
 scale = Vector2(-0.852963, -38.6806)
 script = ExtResource("6_y157s")
 new_scene_location = "res://Scenes/6dark_elves_trap.tscn"
-new_position = Vector2(64, 1768)
+new_position = Vector2(80, 1768)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/TeleportZones/Trap"]
 position = Vector2(-5.64038, 1.45719)
@@ -234,6 +234,9 @@ new_position = Vector2(2176, 1016)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/TeleportZones/JethroYard"]
 shape = SubResource("RectangleShape2D_0ukrq")
 debug_color = Color(0, 0.054902, 1, 0.419608)
+
+[node name="Jethro" parent="." instance=ExtResource("7_i7077")]
+position = Vector2(-66.994, -57.92)
 
 [connection signal="body_entered" from="Layers/TeleportZones/Trap" to="Layers/TeleportZones/Trap" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/TeleportZones/JethroYard" to="Layers/TeleportZones/JethroYard" method="_on_body_entered"]

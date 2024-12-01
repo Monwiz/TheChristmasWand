@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bjywvic8b2cu4"]
+[gd_scene load_steps=57 format=4 uid="uid://bjywvic8b2cu4"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_eyqjo"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="2_jhrws"]
@@ -6,11 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="4_oir2a"]
 [ext_resource type="Script" path="res://Scripts/interactive_obj.gd" id="4_p8t72"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="5_0foww"]
-[ext_resource type="PackedScene" uid="uid://cdn8tet00w2je" path="res://Characters/npc.tscn" id="6_ho72p"]
-[ext_resource type="Resource" uid="uid://b0bos5p2faec3" path="res://Assets/Resources/Dialogue/example_dialogue.tres" id="7_r6r0i"]
 [ext_resource type="Script" path="res://Scripts/event.gd" id="8_3urlg"]
 [ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="9_mkv0n"]
+[ext_resource type="Texture2D" uid="uid://c5k18fc1pqx7r" path="res://Assets/Textures/Frame Export/Krampus and Santa Silohuette.jpg" id="9_tstax"]
+[ext_resource type="Texture2D" uid="uid://bvlkbw36eymc5" path="res://Assets/Textures/Frame Export/Krampus and Santa Silohuette 1.5.jpg" id="10_th6ty"]
 [ext_resource type="Script" path="res://Scripts/blocked_area.gd" id="10_y56v7"]
+[ext_resource type="Texture2D" uid="uid://4hx8uxea2ati" path="res://Assets/Textures/Frame Export/Krampus and Santa Silohuette 2.jpg" id="11_lq1bo"]
+[ext_resource type="Texture2D" uid="uid://dlcyqucaxgnrn" path="res://Assets/Textures/Frame Export/The Prince of Darkness.jpg" id="12_kd6br"]
+[ext_resource type="Texture2D" uid="uid://caiecy168v255" path="res://Assets/Textures/Frame Export/First Shot of Christmas.jpg" id="13_a6xeb"]
+[ext_resource type="Texture2D" uid="uid://tdiiro4q4rfm" path="res://Assets/Textures/Frame Export/Krampus Watching Orb.jpg" id="14_b6xbe"]
+[ext_resource type="Texture2D" uid="uid://be1n78qwqebpi" path="res://Assets/Textures/Frame Export/Mage Guarding Wand.jpg" id="15_oukb8"]
+[ext_resource type="Texture2D" uid="uid://b3ccqftij8gc3" path="res://Assets/Textures/Frame Export/Goblins Enter the Vault.jpg" id="16_ptv85"]
+[ext_resource type="Texture2D" uid="uid://bshafh34qhn71" path="res://Assets/Textures/Frame Export/Painting of Mage Defending against Goblins.jpg" id="17_p7i4a"]
+[ext_resource type="Texture2D" uid="uid://dga145ukv13iv" path="res://Assets/Textures/Frame Export/Elder Wizards.jpg" id="18_dpmmp"]
+[ext_resource type="Texture2D" uid="uid://c8cu3auj245np" path="res://Assets/Textures/Frame Export/Goblin Break Wand.jpg" id="19_s2a6w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_p25p8"]
 vertices = PackedVector2Array(285.953, 51.7188, 288.281, 161.367, 16.6484, 158.109, 15.5938, 51.0234)
@@ -110,7 +119,7 @@ size = Vector2(4.375, 11.75)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tt284"]
 closed = false
-polygon = PackedVector2Array(-8, 7.5, 7.5, 7.5)
+polygon = PackedVector2Array(-12.75, 1.25, 11.5, 1.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsw0a"]
 size = Vector2(16, 16)
@@ -181,9 +190,22 @@ _data = {
 "fade-out": SubResource("Animation_gshw4")
 }
 
+[sub_resource type="Gradient" id="Gradient_t63gu"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ief86"]
+gradient = SubResource("Gradient_t63gu")
+
+[sub_resource type="Gradient" id="Gradient_s3ghg"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_snnva"]
+gradient = SubResource("Gradient_s3ghg")
+width = 1
+
 [sub_resource type="Resource" id="Resource_s7l3g"]
 script = ExtResource("9_mkv0n")
-dialogue_line = [["Mage", "The goblins went away, so it's better to take the map and find out more about what hapened before setting off on the adventure."]]
+dialogue_line = [ExtResource("9_tstax"), ["Mage", "[i]A long time ago, in the mythic past, two beings were granted power over the season of Christmas.[/i]"], ExtResource("10_th6ty"), ["Mage", "[i]The first, Santa was the rewarder of the righteous, sent to bring gifts and treats to good boys and girls on Christmas Eve.[/i]"], ExtResource("11_lq1bo"), ["Mage", "[i]The other being was called Krampus, a dark creature that was sent to punish the wicked. His deeds are spoken only in hushed Whispers.[/i]"], ExtResource("12_kd6br"), ["Mage", "[i]Krampus had grown jealous of Santa's power and widespread renown, so he struck a deal with the prince of darkness.[/i]"], ExtResource("13_a6xeb"), ["Mage", "[i]The deal was, that the season's power would be his alone if he claimed the wand of Christmas and turned every soul over to Apollyon.[/i]"], SubResource("GradientTexture1D_ief86"), ["Mage", "[i]Opportunity presented itself as Santa whose Christmas labors left him drained would go in springtime to take a rest in the old country. Before he could enter, he would leave his wand at the wizard’s school. For such devices were forbidden in that peaceful land.[/i]"], ExtResource("14_b6xbe"), ["Mage", "[i]From his lair, Krampus watched Santa journey to the school and the creature set his plans in motion. He commanded his minions to descend on the vault in the Hidden Place.[/i]"], ExtResource("15_oukb8"), ["Mage", "[i]When this Story began I was a young wizard. I had been entrusted with the wand till Santa returned.[/i]"], ExtResource("16_ptv85"), ["Mage", "[i]Without warning the minions raged in, taking me by surprise.[/i]"], ExtResource("17_p7i4a"), ["Mage", "[i]I tried my best to fight valiantly. but even an experienced mage could not have held off the hordes.[/i]"], ExtResource("18_dpmmp"), ["Mage", "[i]Just as I was being overtaken by the goblins, the elder wizard burst in. The goblins had almost wrestled the wand from my hand. The Elder wizards unleashed a fire and wind storm sending the goblins in retreat.[/i]"], ExtResource("19_s2a6w"), ["Mage", "[i]The goblins in a desperate move broke the wand and fled with one half. I watched helplessly, as they disappeared. I was beaten and bruised, yet I still had the other half of the wand.[/i]"], SubResource("GradientTexture1D_snnva"), ["Mage", "[i]The elder wizards approached, and they quickly spelled out their judgment. I had a fortnight to retrieve the wand or I would face Excommunication.[/i]"], "pic.hide", ["Mage", "It's better to take the map and find out more about what happened before setting off on the adventure."]]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_358xw"]
 
@@ -385,7 +407,6 @@ debug_color = Color(1, 1, 0, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("4_oir2a")]
 light_mask = 0
-y_sort_enabled = true
 position = Vector2(264.25, 138.5)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
@@ -407,8 +428,8 @@ blend_mode = 1
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(312.25, 152.25)
 script = ExtResource("5_0foww")
-new_scene_location = "res://Scenes/1yard.tscn"
-new_position = Vector2(960, 585)
+new_scene_location = "res://Scenes/2village_path.tscn"
+new_position = Vector2(1280, 3480)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 shape = SubResource("RectangleShape2D_xsw0a")
@@ -419,11 +440,6 @@ libraries = {
 "": SubResource("AnimationLibrary_ej10s")
 }
 autoplay = "fade-in"
-
-[node name="Npc" parent="." instance=ExtResource("6_ho72p")]
-position = Vector2(86, 55)
-disable_mode = 1
-dialogue = ExtResource("7_r6r0i")
 
 [node name="Event" type="Area2D" parent="."]
 position = Vector2(263.75, 136.75)

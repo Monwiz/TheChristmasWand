@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dsngblgxyyy7o"]
+[gd_scene load_steps=48 format=4 uid="uid://dsngblgxyyy7o"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_hwktp"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_blpq2"]
@@ -7,6 +7,18 @@
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="5_jdd8v"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="6_wjcv6"]
 [ext_resource type="AudioStream" uid="uid://h41t32d2i6po" path="res://Assets/Audio/Music/winter.ogg" id="7_606fq"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="8_34g4d"]
+[ext_resource type="AudioStream" uid="uid://cuv5h7i6shh50" path="res://Assets/Audio/Music/ending.ogg" id="8_hednu"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="8_swwcw"]
+[ext_resource type="Texture2D" uid="uid://cvtxnfa8etvl0" path="res://Assets/Textures/Frame Export/Queen Battling in the past.jpg" id="9_aeh52"]
+[ext_resource type="Texture2D" uid="uid://bhmwme7ujgqvn" path="res://Assets/Textures/Frame Export/Jackfrost Leading his army.jpg" id="10_o6tpg"]
+[ext_resource type="Texture2D" uid="uid://duejtvujoh8a1" path="res://Assets/Textures/Frame Export/The Forces meet and Destroy each other.jpg" id="11_trtwx"]
+[ext_resource type="Texture2D" uid="uid://c5p0ettv3bowd" path="res://Assets/Textures/Frame Export/Queens Castle.jpg" id="12_lpbrq"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="13_85df2"]
+[ext_resource type="Texture2D" uid="uid://b64saofhrv1vx" path="res://Assets/Textures/Frame Export/Queen Surrounded by Goblins.jpg" id="14_tb164"]
+[ext_resource type="Resource" uid="uid://8b4a1l4m5my8" path="res://Assets/Resources/Fights/goblins_vs_snow_queen.tres" id="15_6srpl"]
+[ext_resource type="PackedScene" uid="uid://51p1727ct0pe" path="res://Characters/anne.tscn" id="15_ukycg"]
+[ext_resource type="PackedScene" uid="uid://by7xsdywydafv" path="res://Characters/short_goblin.tscn" id="16_4rc2d"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_812kn"]
 vertices = PackedVector2Array(611.5, 889.898, 12.7188, 884.094, 11.2734, 268.719, 611.5, 267.273)
@@ -119,6 +131,113 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikiq1"]
 size = Vector2(16, 23.759)
 
+[sub_resource type="Gradient" id="Gradient_yqrft"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jkprm"]
+gradient = SubResource("Gradient_yqrft")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_2tm6p"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_54f6b"]
+gradient = SubResource("Gradient_2tm6p")
+width = 1
+
+[sub_resource type="Resource" id="Resource_arrv5"]
+script = ExtResource("13_85df2")
+dialogue_line = [ExtResource("9_aeh52"), ["Mage", "[i]According to the records, not quite a hundred years ago Anne stood tall among Monarchs.[/i]"], ["Mage", "[i]Statuesque and intelligent, she led her people to conquer most of Europe.[/i]"], ExtResource("10_o6tpg"), ["Mage", "[i]Yet she could not prevail against enemy Jack Frost and his dark Sorcery.[/i]"], ["Mage", "[i]The tempter visited and offered her the world, they would rule side by side, on the condition she built machines powered by a special crystal.[/i]"], ExtResource("11_trtwx"), ["Mage", "[i]She launched her forces against Jack’s, this time on equal footing.[/i]"], ["Mage", "[i]Fate or some other means decimated them both.[/i]"], ["Mage", "[i]The strife of Dark magic versus dark magic threw the battlefield into chaos. Leaving a handful of survivors.[/i]"], ["Mage", "[i]During the battle, an explosion left a shard of magic crystal embedded in her heart. Anne escaped, only to be chased across Europe.[/i]"], SubResource("GradientTexture1D_jkprm"), ["Mage", "[i]She grew cold and cruel, earning a new name for herself. The snow queen has been here till this very moment.[/i]"], ExtResource("12_lpbrq"), ["Mage", "[i]The queen hid in a small domain, ruler over a few farms and towns. Age had dullen her cruelty and her citizens enjoyed a tenuous peace.[/i]"], ["Mage", "[i]Despite her immortality and youthful appearance, her ambition was lost to time. The fury that had defined her was but a memory.[/i]"], ["Mage", "[i]The gifts of the dark lord were mockery, her immortality imparted her a seeming eternity of introspection and regret. Her power’s purpose was not her own, instead, she achieved the design of the prince of darkness and her people lived as slaves.[/i]"], ["Mage", "[i]Her slumber was interrupted by cries, as the forces of Krampus had descended on her village. What little will she had left was not enough to save her people. Even if she could have mustered strength, one cannot fight the dark master with his own power.[/i]"], SubResource("GradientTexture1D_54f6b"), ["Mage", "[i]Once again the queen fled a kingdom engulfed in flame, this time knowing it was caused by a fool like herself.[/i]"]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xipqf"]
+
+[sub_resource type="Gradient" id="Gradient_618s3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tt7sd"]
+gradient = SubResource("Gradient_618s3")
+width = 1
+
+[sub_resource type="Resource" id="Resource_uttkd"]
+script = ExtResource("13_85df2")
+dialogue_line = ["timer.2", ExtResource("14_tb164"), "anim.continue.tp_near_queen", ["Mage", "[i]My companion and I came across her as she was surrounded. We saw that the goblins outnumbered her, yet she did not move to run or attack. She was armed with an ancient sword, covered in ice and rusted.[/i]"], ["Mage", "Who is that?"], ["Jethro", "The snow queen, she was feared for her battle savvy and use of the dark arts. But now she is alone with only a relic to defend herself with."], ["Mage", "Should we assist her?"], ["Jethro", "If she has truly become the enemy of the dark one, she may be of assistance. Even without her dark arts, she is skilled with the sword."], "pic.hide", "anim.continue.walking_to_queen", ["Jethro", "Which master do you serve?"], ["Snow Queen", "I served the dark in my time and I am brought low, even now I still serve as his entertainment as I am tortured for his amusement."], ["Snow Queen", "I am cursed to see my plans unfold and my people die, there is no breaking of this cycle. Even these goblins will not attack, but rather stay at mocking distance."], ["Jethro", "Look upon me, I am a yeti cursed at birth to bear the shame of my forebears. The only way to break the cycle is to commit yourself unselfishly to the cause of light."], SubResource("GradientTexture1D_tt7sd"), ["Jethro", "For too long the people of this realm have called evil good and good evil."], ["Jethro", "My fathers in the distant past began their conquest with a desire to better themselves and their countrymen. Yet despite this it ended with them doing evil for evil’s sake."], ["Jethro", "If we fail, every man on Earth will know your pain."], ["Jethro", "Forever slave to the dark one’s whim, a being who stokes hubris to watch man’s pain as they go from beasts as they strive in futility. There is no glory in this and very little chance of redemption in the eyes of the world. But for the maker’s sake consider assisting those who can be saved."], "pic.hide", ["Mage", "[i]The queen raised her sword and in an instant, the goblins received new orders. The dark one knew her alliance had changed and commanded the goblins to kill her. The Queen felt the immortality left her, as it is known that the dark lord's power is only for those who serve his will.[/i]"], ExtResource("15_6srpl")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8ruj"]
+size = Vector2(144.251, 128.497)
+
+[sub_resource type="Animation" id="Animation_7blu5"]
+resource_name = "tp_near_queen"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.138696),
+"update": 0,
+"values": [Vector2(320, 550)]
+}
+
+[sub_resource type="Animation" id="Animation_wjlxe"]
+resource_name = "walking_to_queen"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 475), Vector2(320, 450)]
+}
+
+[sub_resource type="Animation" id="Animation_tft5f"]
+resource_name = "tp_to_ending"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 270)]
+}
+
+[sub_resource type="Animation" id="Animation_7fpd4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21.75, 762.25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f0opm"]
+_data = {
+"RESET": SubResource("Animation_7fpd4"),
+"tp_near_queen": SubResource("Animation_7blu5"),
+"tp_to_ending": SubResource("Animation_tft5f"),
+"walking_to_queen": SubResource("Animation_wjlxe")
+}
+
 [node name="Scene" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -131,7 +250,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_812kn")
 
 [node name="Player" parent="." instance=ExtResource("2_blpq2")]
-y_sort_enabled = true
 position = Vector2(21.75, 762.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -217,10 +335,71 @@ scale = Vector2(3.48792, 0.0425347)
 shape = SubResource("RectangleShape2D_ikiq1")
 debug_color = Color(0, 0.054902, 1, 0.419608)
 
+[node name="Ending" type="Area2D" parent="Layers/Objects/TeleportZones"]
+position = Vector2(318.75, 272)
+scale = Vector2(-0.740019, -16.1639)
+script = ExtResource("6_wjcv6")
+new_scene_location = "res://Ui/ending.tscn"
+new_music = ExtResource("8_hednu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Objects/TeleportZones/Ending"]
+position = Vector2(-1.93298, 0.0520782)
+scale = Vector2(3.48792, 0.0425347)
+shape = SubResource("RectangleShape2D_ikiq1")
+debug_color = Color(0, 0.054902, 1, 0.419608)
+
+[node name="Event" type="Area2D" parent="Layers"]
+position = Vector2(21.75, 768)
+script = ExtResource("8_34g4d")
+dialogue = SubResource("Resource_arrv5")
+event_string = "10.start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Event"]
+shape = SubResource("RectangleShape2D_xipqf")
+
+[node name="Event2" type="Area2D" parent="Layers"]
+position = Vector2(320, 468)
+script = ExtResource("8_34g4d")
+dialogue = SubResource("Resource_uttkd")
+event_string = "10.anne"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Event2"]
+position = Vector2(-8.78693, -48.2145)
+shape = SubResource("RectangleShape2D_u8ruj")
+
 [node name="Obstacles" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
 build_mode = 1
 polygon = PackedVector2Array(0, 896, 0, 672.352, 146.688, 672.15, 188, 648, 218, 618, 240, 576, 240, 386, 256, 370, 256, 256, 384, 256, 384, 530, 400, 544, 400, 690, 416, 706, 416, 832, 432, 848, 432, 896)
 
+[node name="Jethro" parent="." instance=ExtResource("8_swwcw")]
+position = Vector2(-60.994, -95.92)
+
+[node name="SnowQueen" parent="." instance=ExtResource("15_ukycg")]
+position = Vector2(318.75, 422)
+
+[node name="Crowd" type="Node2D" parent="."]
+position = Vector2(318.75, 421.75)
+
+[node name="ShortGoblin" parent="Crowd" instance=ExtResource("16_4rc2d")]
+position = Vector2(-24, 12)
+
+[node name="ShortGoblin2" parent="Crowd" instance=ExtResource("16_4rc2d")]
+position = Vector2(18, 16)
+
+[node name="ShortGoblin3" parent="Crowd" instance=ExtResource("16_4rc2d")]
+position = Vector2(26, -14)
+
+[node name="ShortGoblin4" parent="Crowd" instance=ExtResource("16_4rc2d")]
+position = Vector2(-16, -20.75)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f0opm")
+}
+
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/Puzzles" to="Layers/Objects/TeleportZones/Puzzles" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Objects/TeleportZones/Ending" to="Layers/Objects/TeleportZones/Ending" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Event" to="Layers/Event" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Event2" to="Layers/Event2" method="_on_body_entered"]

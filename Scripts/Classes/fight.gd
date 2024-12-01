@@ -13,3 +13,5 @@ class_name Fight
 @export var talking_dialogue: Dialogue
 @export var failed_leaving_dialogue: Dialogue
 @export var dialogue_before_death: Dialogue
+@export var post_fight_dialogue: Dialogue
+@export var won_dialogue: Dialogue

@@ -9,6 +9,7 @@ func _ready() -> void:
 	update()
 
 func update() -> void:
+	if event_conditions.size() == 0: return
 	if event_conditions.all(func(event):
 		return event in WorldStats.PlotEventsHappened
 	):

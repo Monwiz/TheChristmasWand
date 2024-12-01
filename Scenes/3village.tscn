@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dmngthase2cxk"]
+[gd_scene load_steps=30 format=4 uid="uid://dmngthase2cxk"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_xojcw"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_dyxji"]
@@ -7,6 +7,10 @@
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="5_rf1ys"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="6_y4k24"]
 [ext_resource type="Texture2D" uid="uid://ctcggb0ns1up6" path="res://Assets/Textures/Map/big_tree.png" id="7_0w2sm"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="8_xrkie"]
+[ext_resource type="Texture2D" uid="uid://cgousme0xjgfl" path="res://Assets/Textures/Frame Export/Mage walks into town.jpg" id="9_13jmq"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="10_7ago2"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="11_wuvjg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uwxmt"]
 vertices = PackedVector2Array(1043.94, 203.938, 1040.06, 884, 7.96875, 884, 6.02344, 198.047)
@@ -130,6 +134,13 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gqm8w"]
 size = Vector2(52.0059, 16)
 
+[sub_resource type="Resource" id="Resource_iac58"]
+script = ExtResource("10_7ago2")
+dialogue_line = [ExtResource("9_13jmq"), ["Mage", "[i]The Yeti were once a proud people, that is until they sided with the prince of darkness and marched on the north pole. Their hard-fought defeat left them unrecognizable people. As I gazed upon them for the first time. I wondered if these yeti were really the same who descended from ancient Warriors.[/i]"]]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqju7"]
+size = Vector2(20, 31.9946)
+
 [node name="Scene" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -146,7 +157,6 @@ navigation_polygon = SubResource("NavigationPolygon_wq6gy")
 navigation_layers = 2
 
 [node name="Player" parent="." instance=ExtResource("2_dyxji")]
-y_sort_enabled = true
 position = Vector2(319.75, 860.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -255,6 +265,16 @@ texture = ExtResource("7_0w2sm")
 position = Vector2(-1.99707, -2)
 shape = SubResource("RectangleShape2D_gqm8w")
 
+[node name="Event" type="Area2D" parent="Layers"]
+position = Vector2(320, 868.5)
+script = ExtResource("8_xrkie")
+dialogue = SubResource("Resource_iac58")
+event_string = "3.start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Event"]
+position = Vector2(0, 5.99731)
+shape = SubResource("RectangleShape2D_iqju7")
+
 [node name="Obstacles" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
@@ -263,5 +283,9 @@ polygon = PackedVector2Array(0, 896, 0, 192, 1056, 192, 1056, 896)
 
 [node name="NPCs" type="Node2D" parent="."]
 
+[node name="Jethro" parent="." instance=ExtResource("11_wuvjg")]
+position = Vector2(-58.994, 196.08)
+
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/VillagePath" to="Layers/Objects/TeleportZones/VillagePath" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/JethroYard" to="Layers/Objects/TeleportZones/JethroYard" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Event" to="Layers/Event" method="_on_body_entered"]

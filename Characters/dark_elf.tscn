@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://bc8tu8an0cp0d"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/Characters/dark_elf.gd" id="1_bwgel"]
+[ext_resource type="Texture2D" uid="uid://bisw1ybli1fi4" path="res://Assets/Textures/Characters/Dark Elf/Attacking.png" id="1_emkmy"]
+[ext_resource type="Texture2D" uid="uid://0wni4xvlh0bi" path="res://Assets/Textures/Characters/Dark Elf/Faking.png" id="2_j4q2s"]
+[ext_resource type="Texture2D" uid="uid://bamloi3c3fx7r" path="res://Assets/Textures/Characters/Dark Elf/Walking.png" id="3_b38ep"]
+[ext_resource type="PackedScene" uid="uid://ct02hvakw8ghn" path="res://Ui/bar.tscn" id="4_j3r1s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdeso"]
+atlas = ExtResource("1_emkmy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm50l"]
+atlas = ExtResource("1_emkmy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyv5a"]
+atlas = ExtResource("1_emkmy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38s1p"]
+atlas = ExtResource("1_emkmy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqsk"]
+atlas = ExtResource("2_j4q2s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jimk"]
+atlas = ExtResource("3_b38ep")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hja1k"]
+atlas = ExtResource("3_b38ep")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu75d"]
+atlas = ExtResource("3_b38ep")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64h5l"]
+atlas = ExtResource("3_b38ep")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fgkh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdeso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm50l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyv5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38s1p")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqsk")
+}],
+"loop": false,
+"name": &"faking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jimk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hja1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu75d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64h5l")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dedg3"]
+size = Vector2(16, 4.00053)
+
+[node name="DarkElf" type="CharacterBody2D"]
+script = ExtResource("1_bwgel")
+hp = 500
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 99
+offset_left = -11.0
+offset_top = -26.0
+offset_right = 77.0
+offset_bottom = -2.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 17
+text = "Dark Elf"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_6fgkh")
+animation = &"faking"
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.339355, 0.499735)
+shape = SubResource("RectangleShape2D_dedg3")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_j3r1s")]
+visible = false
+offset_top = -19.0
+offset_bottom = -18.0
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+avoidance_enabled = true

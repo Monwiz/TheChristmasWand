@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdn8tet00w2je"]
 
-[ext_resource type="Script" path="res://Scripts/Classes/Characters/jack.gd" id="1_yd7qv"]
+[ext_resource type="Script" path="res://Scripts/Classes/npc.gd" id="1_mpc63"]
 [ext_resource type="Texture2D" uid="uid://dffij6olj656p" path="res://Assets/Textures/icon.svg" id="2_hgs4n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_72ywd"]
@@ -33,7 +33,7 @@ collision_mask = 3
 motion_mode = 1
 slide_on_ceiling = false
 floor_stop_on_slope = false
-script = ExtResource("1_yd7qv")
+script = ExtResource("1_mpc63")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 0

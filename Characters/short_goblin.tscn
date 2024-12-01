@@ -1,0 +1,146 @@
+[gd_scene load_steps=19 format=3 uid="uid://by7xsdywydafv"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/npc.gd" id="1_scbi4"]
+[ext_resource type="Texture2D" uid="uid://b6ftlipv6lna7" path="res://Assets/Textures/Characters/Short Goblin/Attacking.png" id="2_iyfhx"]
+[ext_resource type="Texture2D" uid="uid://b0m6e1f385clb" path="res://Assets/Textures/Characters/Short Goblin/Walking.png" id="3_slqpw"]
+[ext_resource type="PackedScene" uid="uid://ct02hvakw8ghn" path="res://Ui/bar.tscn" id="4_q6caf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eepnm"]
+atlas = ExtResource("2_iyfhx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk8y3"]
+atlas = ExtResource("2_iyfhx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18l83"]
+atlas = ExtResource("2_iyfhx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnpay"]
+atlas = ExtResource("2_iyfhx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvnt0"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws4fl"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2jpb"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ptwy"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu7bd"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i70vr"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a22wp"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6fy5"]
+atlas = ExtResource("3_slqpw")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_py35o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eepnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tk8y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18l83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnpay")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvnt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws4fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2jpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ptwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu7bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i70vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a22wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6fy5")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3let"]
+size = Vector2(10.6787, 5.5)
+
+[node name="ShortGoblin" type="CharacterBody2D"]
+script = ExtResource("1_scbi4")
+hp = 200
+strength = 10
+
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 99
+offset_left = -11.0
+offset_top = -26.0
+offset_right = 77.0
+offset_bottom = -2.0
+scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 17
+text = "Goblin"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 0
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_py35o")
+animation = &"walking"
+autoplay = "walking"
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.339355, -0.25)
+shape = SubResource("RectangleShape2D_o3let")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_q6caf")]
+visible = false
+offset_top = -19.0
+offset_bottom = -18.0
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+avoidance_enabled = true

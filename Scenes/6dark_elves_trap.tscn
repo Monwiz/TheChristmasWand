@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cf0on6b6kj8bv"]
+[gd_scene load_steps=37 format=4 uid="uid://cf0on6b6kj8bv"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_jxxhh"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_fmwyx"]
@@ -7,6 +7,14 @@
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="5_sjyb4"]
 [ext_resource type="Texture2D" uid="uid://ujlt0wy8oqxp" path="res://Assets/Textures/Map/fallen_caravan.png" id="6_2frdl"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="7_rs0hv"]
+[ext_resource type="Texture2D" uid="uid://dmlcppqdhy5xr" path="res://Assets/Textures/Map/nature.png" id="7_xlxbx"]
+[ext_resource type="Script" path="res://Scripts/event.gd" id="9_aqyiq"]
+[ext_resource type="Texture2D" uid="uid://cdlptrp28hyu0" path="res://Assets/Textures/Frame Export/Burned Caravan.jpg" id="10_8o86r"]
+[ext_resource type="Texture2D" uid="uid://cehe1mgnwgr53" path="res://Assets/Textures/Frame Export/Dark Elf Transformation.jpg" id="11_ae5s2"]
+[ext_resource type="Resource" uid="uid://bo1ulecchixa6" path="res://Assets/Resources/Fights/dark_elf.tres" id="12_ll4yn"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="13_y60d6"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="14_ss1ma"]
+[ext_resource type="PackedScene" uid="uid://bc8tu8an0cp0d" path="res://Characters/dark_elf.tscn" id="15_inv41"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8mplw"]
 vertices = PackedVector2Array(1092, 884, 12.7266, 884, 11.2734, 268.719, 1092, 266.023)
@@ -116,8 +124,52 @@ _data = {
 "fade-out": SubResource("Animation_e4t4o")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_px22p"]
+atlas = ExtResource("7_xlxbx")
+region = Rect2(112, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aslk"]
+atlas = ExtResource("7_xlxbx")
+region = Rect2(128, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2lco"]
+atlas = ExtResource("7_xlxbx")
+region = Rect2(144, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmjwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px22p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aslk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2lco")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbyrl"]
 size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_m0gtp"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h638e"]
+gradient = SubResource("Gradient_m0gtp")
+width = 1
+
+[sub_resource type="Resource" id="Resource_0tjgt"]
+script = ExtResource("13_y60d6")
+dialogue_line = ["timer.2", ExtResource("10_8o86r"), ["Mage", "Are you alright?"], ["Old woman", "I am fine, but they stole my child."], ["Mage", "How far are they?"], ["Old woman", "The goblins must be up on the ridge."], SubResource("GradientTexture1D_h638e"), ["Mage", "[i]*notices symbols carved into the wall*[/i]"], ["Mage", "It's a trap, out the way we came."], ["Old woman", "Too bad, that almost worked."], "dark_elf.unfake", ExtResource("11_ae5s2"), "timer.2", "pic.hide", ["Dark Elf", "Well young mage, do you know what form your destruction takes?"], ["Mage", "You're one of the elves that betrayed Santa."], ["Dark Elf", "Yes and thanks to own new master, we will for once destroy our old enslaver. It's your might versus mine, I have considerable power by birthright. Maybe enough to overwhelm your training."], ExtResource("12_ll4yn")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruod8"]
+size = Vector2(152.758, 396.412)
 
 [node name="Scene" type="Node2D"]
 z_as_relative = false
@@ -131,7 +183,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_8mplw")
 
 [node name="Player" parent="." instance=ExtResource("2_fmwyx")]
-y_sort_enabled = true
 position = Vector2(57.75, 436.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -219,7 +270,86 @@ position = Vector2(413, 377)
 texture = ExtResource("6_2frdl")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layers/Objects/Caravan"]
-polygon = PackedVector2Array(386, 414, 386, 352, 462, 352, 462, 358, 472, 358, 472, 392, 466, 392, 466, 402, 460, 402, 460, 414)
+polygon = PackedVector2Array(386, 390, 386, 352, 462, 352, 462, 358, 472, 358, 472, 392, 466, 392, 466, 402, 460, 402, 460, 414, 446, 446, 474, 488, 396, 504, 350, 508, 346.43, 491.044, 370, 480, 362, 466, 343.643, 461.786, 356, 400)
+
+[node name="Node2D" type="Node2D" parent="Layers/Objects/Caravan"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(388, 436.25)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.377309
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(364, 398.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.652256
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(352, 452.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.520929
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(392, 490.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.520929
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(412, 464.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.520929
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(440, 436.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.520929
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(462, 476.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.520929
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(354, 496.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.520929
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(432, 486.25)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.197179
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(358, 426.625)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.197179
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="Layers/Objects/Caravan/Node2D"]
+position = Vector2(376, 466.25)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_tmjwe")
+autoplay = "default"
+frame_progress = 0.197179
 
 [node name="TeleportZones" type="Node2D" parent="Layers"]
 
@@ -241,7 +371,7 @@ position = Vector2(1097.25, 487.5)
 scale = Vector2(-0.776653, -38.7749)
 script = ExtResource("7_rs0hv")
 new_scene_location = "res://Scenes/7road.tscn"
-new_position = Vector2(64, 1768)
+new_position = Vector2(80, 1768)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/TeleportZones/Road3"]
 position = Vector2(-5.64038, 1.45719)
@@ -249,5 +379,22 @@ scale = Vector2(0.44495, 0.286667)
 shape = SubResource("RectangleShape2D_vbyrl")
 debug_color = Color(0, 0.054902, 1, 0.419608)
 
+[node name="Event" type="Area2D" parent="Layers"]
+position = Vector2(562, 446)
+script = ExtResource("9_aqyiq")
+dialogue = SubResource("Resource_0tjgt")
+event_string = "6.trap"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Layers/Event"]
+position = Vector2(-29.0645, 10.8624)
+shape = SubResource("RectangleShape2D_ruod8")
+
+[node name="Jethro" parent="." instance=ExtResource("14_ss1ma")]
+position = Vector2(-66.994, -85.92)
+
+[node name="DarkElf" parent="." instance=ExtResource("15_inv41")]
+position = Vector2(487, 436)
+
 [connection signal="body_entered" from="Layers/TeleportZones/Road1" to="Layers/TeleportZones/Road1" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/TeleportZones/Road3" to="Layers/TeleportZones/Road3" method="_on_body_entered"]
+[connection signal="body_entered" from="Layers/Event" to="Layers/Event" method="_on_body_entered"]

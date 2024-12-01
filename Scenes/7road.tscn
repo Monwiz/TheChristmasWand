@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://c5j82v7jj5evr"]
+[gd_scene load_steps=21 format=4 uid="uid://c5j82v7jj5evr"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_yqjva"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_fnef1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/particles.gd" id="4_8gn45"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="5_7c7b2"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="6_qkn3g"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="7_0ppko"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_urgvo"]
 vertices = PackedVector2Array(1092, 884, 12.7266, 884, 11.2734, 268.719, 1092, 266.023)
@@ -130,7 +131,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_urgvo")
 
 [node name="Player" parent="." instance=ExtResource("2_fnef1")]
-y_sort_enabled = true
 position = Vector2(57.75, 436.25)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -233,6 +233,9 @@ position = Vector2(-0.0613823, -0.876302)
 scale = Vector2(0.44495, 0.286667)
 shape = SubResource("RectangleShape2D_1ahha")
 debug_color = Color(0, 0.054902, 1, 0.419608)
+
+[node name="Jethro" parent="." instance=ExtResource("7_0ppko")]
+position = Vector2(-80.994, -73.92)
 
 [connection signal="body_entered" from="Layers/TeleportZones/Trap" to="Layers/TeleportZones/Trap" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/TeleportZones/Puzzles" to="Layers/TeleportZones/Puzzles" method="_on_body_entered"]

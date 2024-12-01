@@ -10,6 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 		return
 	
+	Stats.player.velocity = Vector2.ZERO
 	WorldStats.PlotEventsHappened.append(event_string)
 	dialogue_box.set_dialogue(dialogue)
 	

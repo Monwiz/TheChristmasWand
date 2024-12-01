@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Fight" load_steps=8 format=3 uid="uid://8b4a1l4m5my8"]
+
+[ext_resource type="Resource" uid="uid://dbhl2dnj5opii" path="res://Assets/Resources/Battle Programmes/goblins_vs_snow_queen.tres" id="1_3qtwl"]
+[ext_resource type="AudioStream" uid="uid://r6g6ps5vc1i0" path="res://Assets/Audio/Music/battle_alt.ogg" id="1_h4hff"]
+[ext_resource type="Texture2D" uid="uid://dt2q8qpg6k5yy" path="res://Assets/Textures/Frame Export/Final Group Shot.jpg" id="2_hle76"]
+[ext_resource type="AudioStream" uid="uid://bi4u8hid1ymgc" path="res://Assets/Audio/Music/battle_alt_intro.ogg" id="2_uc62x"]
+[ext_resource type="Script" path="res://Scripts/Classes/fight.gd" id="3_r2cn0"]
+[ext_resource type="Script" path="res://Scripts/Classes/dialogue.gd" id="3_u2g8u"]
+
+[sub_resource type="Resource" id="Resource_mi8cr"]
+script = ExtResource("3_u2g8u")
+dialogue_line = [["Snow Queen", "What is your quest?"], ["Jethro", "We march to stop Krampus from using the wand to claim the world souls for the dark master."], ["Snow Queen", "I will join you on your quest."], ExtResource("2_hle76"), ["Mage", "[i]I saw in that moment the queen looking at the road, one could see a new look of determination.[/i]"], "anim.continue.tp_to_ending"]
+
+[resource]
+script = ExtResource("3_r2cn0")
+allies_paths = Array[NodePath]([NodePath("Player"), NodePath("Jethro"), NodePath("SnowQueen")])
+enemies_paths = Array[NodePath]([NodePath("Crowd/ShortGoblin"), NodePath("Crowd/ShortGoblin2"), NodePath("Crowd/ShortGoblin3"), NodePath("Crowd/ShortGoblin4")])
+premusic = ExtResource("2_uc62x")
+music = ExtResource("1_h4hff")
+battle_program = ExtResource("1_3qtwl")
+can_leave = false
+leaving_chances = 0.75
+post_fight_dialogue = SubResource("Resource_mi8cr")

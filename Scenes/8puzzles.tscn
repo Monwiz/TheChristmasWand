@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=4 uid="uid://xl2ribguitfd"]
+[gd_scene load_steps=25 format=4 uid="uid://xl2ribguitfd"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_h8075"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_c83cy"]
 [ext_resource type="Texture2D" uid="uid://c6s8nybq1rp7i" path="res://Assets/Textures/snow.png" id="3_afir2"]
 [ext_resource type="Script" path="res://Scripts/particles.gd" id="4_n68kg"]
 [ext_resource type="TileSet" uid="uid://dsvqbjkj46vr7" path="res://Assets/Other/tilemap.tres" id="9_phj8y"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="10_6m5qf"]
 [ext_resource type="Script" path="res://Scripts/Objects/teleport_zone.gd" id="10_i77fw"]
 [ext_resource type="PackedScene" uid="uid://2ljh55bcexqq" path="res://Objects/spawner.tscn" id="11_tnan0"]
 [ext_resource type="PackedScene" uid="uid://cw6oj7rci4mh2" path="res://Objects/button.tscn" id="12_3dg68"]
@@ -136,7 +137,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_q0j8m")
 
 [node name="Player" parent="." instance=ExtResource("2_c83cy")]
-y_sort_enabled = true
 position = Vector2(431.75, 870)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -348,6 +348,9 @@ tile_set = ExtResource("9_phj8y")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
 build_mode = 1
 polygon = PackedVector2Array(0, 896, 0, 256, 624, 256, 624, 896)
+
+[node name="Jethro" parent="." instance=ExtResource("10_6m5qf")]
+position = Vector2(-56.994, -59.92)
 
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/Road3" to="Layers/Objects/TeleportZones/Road3" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/Puzzles2" to="Layers/Objects/TeleportZones/Puzzles2" method="_on_body_entered"]

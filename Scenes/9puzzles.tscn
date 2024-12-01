@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://fl00el4uk6k4"]
+[gd_scene load_steps=27 format=4 uid="uid://fl00el4uk6k4"]
 
 [ext_resource type="PackedScene" uid="uid://h3xrvmpf1noe" path="res://Ui/gui.tscn" id="1_72l5s"]
 [ext_resource type="PackedScene" uid="uid://c11fe2qp480fr" path="res://Characters/player.tscn" id="2_xcw25"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cw6oj7rci4mh2" path="res://Objects/button.tscn" id="8_0hxtn"]
 [ext_resource type="Script" path="res://Scripts/Objects/barrier.gd" id="9_qbb3l"]
 [ext_resource type="Script" path="res://Scripts/destroy_obj.gd" id="10_i2x40"]
+[ext_resource type="PackedScene" uid="uid://cc2gyi6x07ylo" path="res://Characters/Jethro.tscn" id="11_pmodx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rqf0m"]
 vertices = PackedVector2Array(611.5, 889.898, 12.7188, 884.094, 11.2734, 268.719, 611.5, 267.273)
@@ -139,7 +140,6 @@ visible = false
 navigation_polygon = SubResource("NavigationPolygon_rqf0m")
 
 [node name="Player" parent="." instance=ExtResource("2_xcw25")]
-y_sort_enabled = true
 position = Vector2(25.75, 474)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -311,6 +311,9 @@ tile_set = ExtResource("5_yq64o")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
 build_mode = 1
 polygon = PackedVector2Array(0, 896, 0, 256, 624, 256, 624, 896)
+
+[node name="Jethro" parent="." instance=ExtResource("11_pmodx")]
+position = Vector2(-98.994, -97.92)
 
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/MountainPass" to="Layers/Objects/TeleportZones/MountainPass" method="_on_body_entered"]
 [connection signal="body_entered" from="Layers/Objects/TeleportZones/Puzzles1" to="Layers/Objects/TeleportZones/Puzzles1" method="_on_body_entered"]

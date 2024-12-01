@@ -13,12 +13,15 @@ func open():
 	update()
 	visible = true
 	Stats.player.set_physics_process(false)
+	Stats.player.velocity = Vector2.ZERO
+	$"/root/Scene/Gui/Menu/Inventory".set_physics_process(false)
 	if cont.get_child_count() != 0:
 		cont.get_children()[0].grab_focus()
 
 func close():
 	visible = false
 	Stats.player.set_physics_process(true)
+	$"/root/Scene/Gui/Menu/Inventory".set_physics_process(true)
 
 func update():
 	for child in cont.get_children():
